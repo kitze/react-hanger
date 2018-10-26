@@ -8,13 +8,31 @@ export const useStateful = initial => {
   };
 };
 
-export const useNumber = initial => {
+export const useNumber = (initial, { upperLimit, lowerLimit } = {}) => {
   const [value, setValue] = useState(initial);
   return {
     value,
     setValue,
-    increase: useCallback(() => setValue(value + 1)),
-    decrease: useCallback(() => setValue(value - 1))
+    increase: useCallback(() => {
+      const nextValue = value + 1;
+      setValue(
+        upperLimit !== undefined
+          ? nextValue - 1 < upperLimit
+            ? nextValue
+            : value
+          : nextValue
+      );
+    }),
+    decrease: useCallback(() => {
+      const nextValue = value - 1;
+      setValue(
+        lowerLimit !== undefined
+          ? nextValue + 1 > lowerLimit
+            ? nextValue
+            : value
+          : nextValue
+      );
+    })
   };
 };
 
@@ -24,7 +42,10 @@ export const useArray = initial => {
     value,
     setValue,
     add: useCallback(a => setValue(v => [...v, a])),
-    clear: useCallback(() => setValue(v => [])),
+    clear: useCallback(() => setValue(() => [])),
+    removeById: useCallback(id =>
+      setValue(arr => arr.filter(v => v && v.id !== id))
+    ),
     removeIndex: useCallback(index =>
       setValue(v => {
         v.splice(index, 1);
@@ -47,11 +68,17 @@ export const useBoolean = initial => {
 
 export const useInput = initial => {
   const [value, setValue] = useState(initial);
+  const onChange = useCallback(e => setValue(e.target.value));
+
   return {
     value,
     setValue,
     hasValue: value && value.trim() !== "",
     clear: useCallback(() => setValue("")),
-    onChangeHandler: useCallback(e => setValue(e.target.value))
+    onChangeHandler: onChange,
+    bindToInput: {
+      onChange,
+      value
+    }
   };
 };
