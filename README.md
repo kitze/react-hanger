@@ -28,7 +28,7 @@ const App = () => {
       <input
         type="text"
         value={newTodo.value}
-        onChange={newTodo.onChangeHangler}
+        onChange={newTodo.onChangeHandler}
       />
     </div>
   );
