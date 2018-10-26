@@ -1,5 +1,7 @@
 # react-hanger
 
+> ⚠️ Warning: hooks are not part of a stable React release yet, so use this library only for experiments
+
 ## Install
 
 ```bash

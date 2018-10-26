@@ -10,13 +10,12 @@ import {
   useOnUnmount
 } from "react-hanger";
 
-
 const Counter = ({ counter }) => {
 
   useLifecycleHooks({
     onMount: () => console.log("mounted!"),
     onUnmount: () => console.log("unmounted!")
-  });
+  })
 
   useOnMount(() => console.log("hatters gonna hate"));
   useOnUnmount(() => console.log("skaters gonna skate"));

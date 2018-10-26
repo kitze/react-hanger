@@ -87,7 +87,7 @@ export const useInput = initial => {
   };
 };
 
-export const useLifecycleHooks = ({ onMount, onUnmount }) =>
+export const useLifecycleHooks = ({ onMount, onUnmount }) => () =>
   useEffect(() => {
     onMount && onMount();
     return () => onUnmount && onUnmount();
@@ -102,3 +102,13 @@ export const useOnMount = onMount =>
   useEffect(() => {
     onMount && onMount();
   }, []);
+
+export const useLogger = (name, props) => {
+  useLifecycleHooks({
+    onMount: () => console.log(`${name} has mounted`),
+    onUnmount: () => console.log(`${name} has unmounted`)
+  });
+  useEffect(() => {
+    console.log("Props updated", props);
+  });
+};
