@@ -92,3 +92,13 @@ export const useLifecycleHooks = ({ onMount, onUnmount }) =>
     onMount && onMount();
     return () => onUnmount && onUnmount();
   }, []);
+
+export const useOnUnmount = onUnmount =>
+  useEffect(() => {
+    return () => onUnmount && onUnmount();
+  }, []);
+
+export const useOnMount = onMount =>
+  useEffect(() => {
+    onMount && onMount();
+  }, []);

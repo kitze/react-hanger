@@ -10,9 +10,18 @@ yarn add react-hanger
 
 ```jsx
 import React, { Component } from "react";
-import { useInput, useBoolean, useNumber, useArray } from "react-hanger";
+
+import {
+  useInput,
+  useBoolean,
+  useNumber,
+  useArray,
+  useOnMount,
+  useOnUnmount
+} from "react-hanger";
 
 const App = () => {
+
   const newTodo = useInput("");
   const showCounter = useBoolean(true);
   const limitedNumber = useNumber(3, { lowerLimit: 0, upperLimit: 5 });
@@ -24,6 +33,9 @@ const App = () => {
     upperLimit: 4,
     rotate: true
   });
+
+  useOnMount(() => console.log("hello world"));
+  useOnUnmount(() => console.log("goodbye world"));
 
   return (
     <div>
@@ -58,6 +70,24 @@ username.setValue("tom");
 console.log(username.value);
 ```
 
+### useOnMount
+
+```jsx
+const App = () => {
+  useOnMount(() => console.log("hello world"));
+  return <div> hello world </div>;
+};
+```
+
+### useOnUnmount
+
+```jsx
+const App = () => {
+  useOnUnmount(() => console.log("goodbye world"));
+  return <div> goodbye world </div>;
+};
+```
+
 ### useLifecycleHooks
 
 ```jsx
@@ -66,8 +96,8 @@ const App = () => {
     onMount: () => console.log("mounted!"),
     onUnmount: () => console.log("unmounted!")
   });
-  
-  return <div> hello world </div>
+
+  return <div> hello world </div>;
 };
 ```
 
