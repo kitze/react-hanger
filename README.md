@@ -67,11 +67,17 @@ Methods:
 ```jsx
 const counter = useNumber(0);
 const limitedNumber = useNumber(3, {upperLimit: 5, lowerLimit: 3});
+const rotatingNumber = useNumber(0, {upperLimit: 5, lowerLimit: 0, rotate: true});
 ```
 
 Methods:
 - `increase`
 - `decrease`
+
+Options: 
+- `lowerLimit`
+- `upperLimit`
+- `rotate`
 
 ### useInput
 
