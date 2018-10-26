@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export const useStateful = initial => {
   const [value, setValue] = useState(initial);
@@ -86,3 +86,9 @@ export const useInput = initial => {
     }
   };
 };
+
+export const useLifecycleHooks = ({ onMount, onUnmount }) =>
+  useEffect(() => {
+    onMount && onMount();
+    return () => onUnmount && onUnmount();
+  }, []);

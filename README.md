@@ -58,6 +58,19 @@ username.setValue("tom");
 console.log(username.value);
 ```
 
+### useLifecycleHooks
+
+```jsx
+const App = () => {
+  useLifecycleHooks({
+    onMount: () => console.log("mounted!"),
+    onUnmount: () => console.log("unmounted!")
+  });
+  
+  return <div> hello world </div>
+};
+```
+
 ### useBoolean
 
 ```jsx
