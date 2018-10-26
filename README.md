@@ -13,10 +13,18 @@ import React, { Component } from "react";
 import { useInput, useBoolean, useNumber, useArray } from "react-hanger";
 
 const App = () => {
+
   const newTodo = useInput("");
   const showCounter = useBoolean(true);
+  const limitedNumber = useNumber(3, { lowerLimit: 0, upperLimit: 5 });
   const counter = useNumber(0);
   const todos = useArray(["hi there", "sup", "world"]);
+  
+  const rotatingNumber = useNumber(0, {
+      lowerLimit: 0,
+      upperLimit: 4,
+      rotate: true
+    });
 
   return (
     <div>
@@ -40,15 +48,15 @@ const App = () => {
 [Open in CodeSandbox](https://codesandbox.io/s/44m70xm70)
 
 ### useStateful
+
 Just an alternative syntax to `useState`, because it doesn't need array destructuring.  
 It returns an object with `value` and a `setValue` method.
 
-```jsx 
-  const username = useStateful("test");
-  
-  username.setValue("tom");
-  console.log(username.value);
-  
+```jsx
+const username = useStateful("test");
+
+username.setValue("tom");
+console.log(username.value);
 ```
 
 ### useBoolean
@@ -57,7 +65,8 @@ It returns an object with `value` and a `setValue` method.
 const showCounter = useBoolean(true);
 ```
 
-Methods: 
+Methods:
+
 - `toggle`
 - `setTrue`
 - `setFalse`
@@ -66,15 +75,21 @@ Methods:
 
 ```jsx
 const counter = useNumber(0);
-const limitedNumber = useNumber(3, {upperLimit: 5, lowerLimit: 3});
-const rotatingNumber = useNumber(0, {upperLimit: 5, lowerLimit: 0, rotate: true});
+const limitedNumber = useNumber(3, { upperLimit: 5, lowerLimit: 3 });
+const rotatingNumber = useNumber(0, {
+  upperLimit: 5,
+  lowerLimit: 0,
+  rotate: true
+});
 ```
 
 Methods:
+
 - `increase`
 - `decrease`
 
-Options: 
+Options:
+
 - `lowerLimit`
 - `upperLimit`
 - `rotate`
@@ -86,19 +101,21 @@ const newTodo = useInput("");
 ```
 
 ```jsx
- <input value={newTodo.value} onChange={newTodo.onChangeHandler}/>
+<input value={newTodo.value} onChange={newTodo.onChangeHandler} />
 ```
 
 ```jsx
- <input {...newTodo.bindToInput} />
+<input {...newTodo.bindToInput} />
 ```
 
 Methods:
+
 - `clear`
 - `onChangeHandler`
 - `bindToInput`
 
 Properties:
+
 - `hasValue`
 
 ### useArray
