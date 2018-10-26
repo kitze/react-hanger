@@ -8,7 +8,7 @@ export const useStateful = initial => {
   };
 };
 
-export const useNumber = (initial, { upperLimit, lowerLimit } = {}) => {
+export const useNumber = (initial, { upperLimit, lowerLimit, rotate } = {}) => {
   const [value, setValue] = useState(initial);
   return {
     value,
@@ -19,7 +19,9 @@ export const useNumber = (initial, { upperLimit, lowerLimit } = {}) => {
         upperLimit !== undefined
           ? nextValue - 1 < upperLimit
             ? nextValue
-            : value
+            : rotate === true
+              ? initial
+              : value
           : nextValue
       );
     }),
@@ -29,7 +31,9 @@ export const useNumber = (initial, { upperLimit, lowerLimit } = {}) => {
         lowerLimit !== undefined
           ? nextValue + 1 > lowerLimit
             ? nextValue
-            : value
+            : rotate === true
+              ? upperLimit
+              : value
           : nextValue
       );
     })
