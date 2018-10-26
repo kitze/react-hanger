@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 
 import { useInput, useBoolean, useNumber, useArray } from "react-hanger";
