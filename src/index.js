@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export const useStateful = initial => {
   const [value, setValue] = useState(initial);
@@ -111,4 +111,23 @@ export const useLogger = (name, props) => {
   useEffect(() => {
     console.log("Props updated", props);
   });
+};
+
+export const useSetState = initialValue => {
+  const { value, setValue } = useStateful(initialValue);
+  return {
+    setState: v => {
+      let newValue = { ...value, ...v };
+      return setValue(newValue);
+    },
+    state: value
+  };
+};
+
+export const usePrevious = value => {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
 };
