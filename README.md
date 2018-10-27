@@ -23,7 +23,6 @@ import {
 } from "react-hanger";
 
 const App = () => {
-
   const newTodo = useInput("");
   const showCounter = useBoolean(true);
   const limitedNumber = useNumber(3, { lowerLimit: 0, upperLimit: 5 });
@@ -164,9 +163,46 @@ Properties:
 
 ### useArray
 
+```jsx
+const todos = useArray([]);
+```
+
 Methods:
 
 - `add`
 - `clear`
 - `removeIndex`
 - `removeById`
+
+## useSetState
+
+```jsx
+const { state, setState } = useSetState({ loading: false });
+setState({ loading: true, data: [1, 2, 3] });
+```
+
+Methods:
+
+- `setState(value)` - will merge the `value` with the current `state` (like this.setState works in React)
+
+Properties:
+
+- `state` - the current state
+
+## usePrevious
+
+Use it to get the previous value of a prop or a state value.  
+It's from the official [React Docs](https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state).  
+It might come out of the box in the future.
+
+```jsx
+const Counter = () => {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
+  return (
+    <h1>
+      Now: {count}, before: {prevCount}
+    </h1>
+  );
+};
+```

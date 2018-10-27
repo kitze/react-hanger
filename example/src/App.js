@@ -1,25 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   useInput,
-  useLifecycleHooks,
   useBoolean,
   useNumber,
   useArray,
-  useOnMount,
-  useOnUnmount
+  useSetState
 } from "react-hanger";
 
 const Counter = ({ counter }) => {
-
-  useLifecycleHooks({
-    onMount: () => console.log("mounted!"),
-    onUnmount: () => console.log("unmounted!")
-  })
-
-  useOnMount(() => console.log("hatters gonna hate"));
-  useOnUnmount(() => console.log("skaters gonna skate"));
-
   return (
     <div>
       <button onClick={counter.increase}> increase</button>
@@ -40,6 +29,7 @@ const App = () => {
   });
   const counter = useNumber(0);
   const todos = useArray(["hi there", "sup", "world"]);
+  const { state, setState } = useSetState({ loading: false, data: true });
 
   return (
     <div style={{ padding: 20 }}>
