@@ -14,29 +14,31 @@ export const useNumber = (initial, { upperLimit, lowerLimit, loop } = {}) => {
     value,
     setValue,
     increase: useCallback(() => {
-      const nextValue = value + 1;
-      setValue(
-        upperLimit !== undefined
+      setValue(value => {
+        const nextValue = value + 1;
+
+        return upperLimit !== undefined
           ? nextValue - 1 < upperLimit
             ? nextValue
             : loop === true
               ? initial
               : value
-          : nextValue
-      );
-    }),
+          : nextValue;
+      })
+    }, []),
     decrease: useCallback(() => {
-      const nextValue = value - 1;
-      setValue(
-        lowerLimit !== undefined
+      setValue(value => {
+        const nextValue = value - 1;
+
+        return lowerLimit !== undefined
           ? nextValue + 1 > lowerLimit
             ? nextValue
             : loop === true
               ? upperLimit
               : value
-          : nextValue
-      );
-    })
+          : nextValue;
+      })
+    }, [])
   };
 };
 
