@@ -47,16 +47,18 @@ export const useArray = initial => {
   return {
     value,
     setValue,
-    add: useCallback(a => setValue(v => [...v, a])),
-    clear: useCallback(() => setValue(() => [])),
-    removeById: useCallback(id =>
-      setValue(arr => arr.filter(v => v && v.id !== id))
+    add: useCallback(a => setValue(v => [...v, a]), []),
+    clear: useCallback(() => setValue(() => []), []),
+    removeById: useCallback(
+      id => setValue(arr => arr.filter(v => v && v.id !== id)),
+      []
     ),
-    removeIndex: useCallback(index =>
-      setValue(v => {
+    removeIndex: useCallback(
+      index => setValue(v => {
         v.splice(index, 1);
         return v;
-      })
+      }),
+      []
     )
   };
 };
@@ -66,16 +68,16 @@ export const useBoolean = initial => {
   return {
     value,
     setValue,
-    toggle: useCallback(() => setValue(v => !v)),
-    setTrue: useCallback(() => setValue(true)),
-    setFalse: useCallback(() => setValue(false))
+    toggle: useCallback(() => setValue(v => !v), []),
+    setTrue: useCallback(() => setValue(true), []),
+    setFalse: useCallback(() => setValue(false), [])
   };
 };
 
 export const useInput = initial => {
   const isNumber = typeof initial === "number";
   const [value, setValue] = useState(initial);
-  const onChange = useCallback(e => setValue(e.target.value));
+  const onChange = useCallback(e => setValue(e.target.value), []);
 
   return {
     value,
@@ -84,7 +86,7 @@ export const useInput = initial => {
       value !== undefined &&
       value !== null &&
       (!isNumber ? value.trim && value.trim() !== "" : true),
-    clear: useCallback(() => setValue("")),
+    clear: useCallback(() => setValue(""), []),
     onChange,
     bindToInput: {
       onChange,
@@ -126,10 +128,13 @@ export const useLogger = (name, props) => {
 export const useSetState = initialValue => {
   const { value, setValue } = useStateful(initialValue);
   return {
-    setState: v => {
-      let newValue = { ...value, ...v };
-      return setValue(newValue);
-    },
+    setState: useCallback(
+      v => {
+        let newValue = { ...value, ...v };
+        return setValue(newValue);
+      },
+      []
+    ),
     state: value
   };
 };
