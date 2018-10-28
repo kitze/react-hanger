@@ -8,16 +8,16 @@ export const useStateful = initial => {
   };
 };
 
-export const useNumber = (initial, { upperLimit, lowerLimit, loop } = {}) => {
+export const useNumber = (initial, { upperLimit, lowerLimit, loop, step = 1 } = {}) => {
   const [value, setValue] = useState(initial);
   return {
     value,
     setValue,
     increase: useCallback(() => {
-      const nextValue = value + 1;
+      const nextValue = value + step;
       setValue(
         upperLimit !== undefined
-          ? nextValue - 1 < upperLimit
+          ? nextValue - step < upperLimit
             ? nextValue
             : loop === true
               ? initial
@@ -26,10 +26,10 @@ export const useNumber = (initial, { upperLimit, lowerLimit, loop } = {}) => {
       );
     }),
     decrease: useCallback(() => {
-      const nextValue = value - 1;
+      const nextValue = value - step;
       setValue(
         lowerLimit !== undefined
-          ? nextValue + 1 > lowerLimit
+          ? nextValue + step > lowerLimit
             ? nextValue
             : loop === true
               ? upperLimit
