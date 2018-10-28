@@ -8,7 +8,7 @@ export const useStateful = initial => {
   };
 };
 
-export const useNumber = (initial, { upperLimit, lowerLimit, rotate } = {}) => {
+export const useNumber = (initial, { upperLimit, lowerLimit, loop } = {}) => {
   const [value, setValue] = useState(initial);
   return {
     value,
@@ -19,7 +19,7 @@ export const useNumber = (initial, { upperLimit, lowerLimit, rotate } = {}) => {
         upperLimit !== undefined
           ? nextValue - 1 < upperLimit
             ? nextValue
-            : rotate === true
+            : loop === true
               ? initial
               : value
           : nextValue
@@ -31,7 +31,7 @@ export const useNumber = (initial, { upperLimit, lowerLimit, rotate } = {}) => {
         lowerLimit !== undefined
           ? nextValue + 1 > lowerLimit
             ? nextValue
-            : rotate === true
+            : loop === true
               ? upperLimit
               : value
           : nextValue
@@ -71,17 +71,25 @@ export const useBoolean = initial => {
 };
 
 export const useInput = initial => {
+  const isNumber = typeof initial === "number";
   const [value, setValue] = useState(initial);
   const onChange = useCallback(e => setValue(e.target.value));
 
   return {
     value,
     setValue,
-    hasValue: value && value.trim() !== "",
+    hasValue:
+      value !== undefined &&
+      value !== null &&
+      (!isNumber ? value.trim && value.trim() !== "" : true),
     clear: useCallback(() => setValue("")),
-    onChangeHandler: onChange,
+    onChange,
     bindToInput: {
       onChange,
+      value
+    },
+    bind: {
+      onChange: setValue,
       value
     }
   };

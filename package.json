@@ -1,6 +1,6 @@
 {
   "name": "react-hanger",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "author": "kitze",
   "license": "MIT",
@@ -17,6 +17,7 @@
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
     "start": "rollup -c -w",
+    "example": "cd ./example && yarn start",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
@@ -54,5 +55,9 @@
   },
   "files": [
     "dist"
+  ],
+  "favoriteScripts": [
+    "example",
+    "start"
   ]
 }

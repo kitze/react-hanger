@@ -25,7 +25,7 @@ const App = () => {
   const rotatingNumber = useNumber(0, {
     lowerLimit: 0,
     upperLimit: 4,
-    rotate: true
+    loop: true
   });
   const counter = useNumber(0);
   const todos = useArray(["hi there", "sup", "world"]);
@@ -47,7 +47,7 @@ const App = () => {
       <button onClick={limitedNumber.decrease}> decrease </button>
       <h3>Rotating number</h3>
       <div>
-        This number will rotate back to the "lowerLimit" if it reaches the
+        This number will loop back to the "lowerLimit" if it reaches the
         "upperLimit" and vice-versa
       </div>
       <br />

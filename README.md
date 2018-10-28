@@ -32,7 +32,7 @@ const App = () => {
   const rotatingNumber = useNumber(0, {
     lowerLimit: 0,
     upperLimit: 4,
-    rotate: true
+    loop: true
   });
 
   useOnMount(() => console.log("hello world"));
@@ -122,7 +122,7 @@ const limitedNumber = useNumber(3, { upperLimit: 5, lowerLimit: 3 });
 const rotatingNumber = useNumber(0, {
   upperLimit: 5,
   lowerLimit: 0,
-  rotate: true
+  loop: true
 });
 ```
 
@@ -135,7 +135,7 @@ Options:
 
 - `lowerLimit`
 - `upperLimit`
-- `rotate`
+- `loop`
 
 ### useInput
 
@@ -144,18 +144,20 @@ const newTodo = useInput("");
 ```
 
 ```jsx
-<input value={newTodo.value} onChange={newTodo.onChangeHandler} />
+<input value={newTodo.value} onChange={newTodo.onChange} />
 ```
 
 ```jsx
 <input {...newTodo.bindToInput} />
+<Slider {...newTodo.bind} />
 ```
 
 Methods:
 
 - `clear`
 - `onChangeHandler`
-- `bindToInput`
+- `bindToInput` - binds the `value` and `onChange` props to an input that has `e.target.value`
+- `bind` - binds the `value` and `onChange` props to an input that's using only `e` in `onChange` (like most external components)
 
 Properties:
 
