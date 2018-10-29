@@ -128,14 +128,17 @@ const rotatingNumber = useNumber(0, {
 
 Methods:
 
-- `increase`
-- `decrease`
+Both `increase` and `decrease` take an optional `amount` argument which is 1 by default, and will override the `step` property if it's used in the options.
+
+- `increase(amount = 1)` 
+- `decrease(amount = 1 )`
 
 Options:
 
 - `lowerLimit`
 - `upperLimit`
 - `loop`
+- `step` - sets the increase/decrease amount of the number upfront, but it can still be overriden by `number.increase(3)` or `number.decrease(5)`
 
 ### useInput
 

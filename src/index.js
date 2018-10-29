@@ -8,36 +8,41 @@ export const useStateful = initial => {
   };
 };
 
-export const useNumber = (initial, { upperLimit, lowerLimit, loop } = {}) => {
+export const useNumber = (
+  initial,
+  { upperLimit, lowerLimit, loop, step = 1 } = {}
+) => {
   const [value, setValue] = useState(initial);
   return {
     value,
     setValue,
-    increase: useCallback(() => {
+    increase: useCallback(i => {
       setValue(value => {
-        const nextValue = value + 1;
+        const increaseBy = i !== undefined ? i : step;
+        const nextValue = value + increaseBy;
 
         return upperLimit !== undefined
-          ? nextValue - 1 < upperLimit
+          ? nextValue - increaseBy < upperLimit
             ? nextValue
             : loop === true
               ? initial
               : value
           : nextValue;
-      })
+      });
     }, []),
-    decrease: useCallback(() => {
+    decrease: useCallback(d => {
       setValue(value => {
-        const nextValue = value - 1;
+        const decreaseBy = d !== undefined ? d : step;
+        const nextValue = value - decreaseBy;
 
         return lowerLimit !== undefined
-          ? nextValue + 1 > lowerLimit
+          ? nextValue + decreaseBy > lowerLimit
             ? nextValue
             : loop === true
               ? upperLimit
               : value
           : nextValue;
-      })
+      });
     }, [])
   };
 };
@@ -54,10 +59,11 @@ export const useArray = initial => {
       []
     ),
     removeIndex: useCallback(
-      index => setValue(v => {
-        v.splice(index, 1);
-        return v;
-      }),
+      index =>
+        setValue(v => {
+          v.splice(index, 1);
+          return v;
+        }),
       []
     )
   };
@@ -128,13 +134,10 @@ export const useLogger = (name, props) => {
 export const useSetState = initialValue => {
   const { value, setValue } = useStateful(initialValue);
   return {
-    setState: useCallback(
-      v => {
-        let newValue = { ...value, ...v };
-        return setValue(newValue);
-      },
-      []
-    ),
+    setState: useCallback(v => {
+      let newValue = { ...value, ...v };
+      return setValue(newValue);
+    }, []),
     state: value
   };
 };
