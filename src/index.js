@@ -10,7 +10,7 @@ export const useStateful = initial => {
 
 export const useNumber = (
   initial,
-  { upperLimit, lowerLimit, loop, step = 1 } = {}
+  { upperLimit, lowerLimit, loop, step = 1, precision } = {}
 ) => {
   const [value, setValue] = useState(initial);
   return {
@@ -27,7 +27,7 @@ export const useNumber = (
             : loop === true
               ? initial
               : value
-          : nextValue;
+          : nextValue.toPrecision(precision);
       });
     }, []),
     decrease: useCallback(d => {
@@ -41,7 +41,7 @@ export const useNumber = (
             : loop === true
               ? upperLimit
               : value
-          : nextValue;
+          : nextValue.toPrecision(precision);
       });
     }, [])
   };
