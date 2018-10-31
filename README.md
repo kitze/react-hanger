@@ -1,6 +1,8 @@
 # react-hanger
 
-> ⚠️ Warning: hooks are not part of a stable React release yet, so use this library only for experiments
+> ⚠️ Warning: hooks are not part of a stable React release yet, so use this library only for experiments ⚠️
+
+<img width="450" src="https://i.imgur.com/JoBWJxS.png"/>
 
 ## Install
 
