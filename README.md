@@ -50,7 +50,7 @@ const App = () => {
       <input
         type="text"
         value={newTodo.value}
-        onChange={newTodo.onChangeHandler}
+        onChange={newTodo.onChange}
       />
     </div>
   );
