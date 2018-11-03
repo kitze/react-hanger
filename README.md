@@ -50,7 +50,7 @@ const App = () => {
       <input
         type="text"
         value={newTodo.value}
-        onChange={newTodo.onChangeHandler}
+        onChange={newTodo.onChange}
       />
     </div>
   );
@@ -160,7 +160,7 @@ const newTodo = useInput("");
 Methods:
 
 - `clear`
-- `onChangeHandler`
+- `onChange`
 - `bindToInput` - binds the `value` and `onChange` props to an input that has `e.target.value`
 - `bind` - binds the `value` and `onChange` props to an input that's using only `e` in `onChange` (like most external components)
 
