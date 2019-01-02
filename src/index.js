@@ -105,7 +105,7 @@ export const useInput = initial => {
   };
 };
 
-export const useLifecycleHooks = ({ onMount, onUnmount }) => () =>
+export const useLifecycleHooks = ({ onMount, onUnmount }) =>
   useEffect(() => {
     onMount && onMount();
     return () => onUnmount && onUnmount();
