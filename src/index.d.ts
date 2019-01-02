@@ -14,7 +14,7 @@ export function useInput(
   initialState?: string
 ): BaseType<string> & {
   onChange: (e: React.SyntheticEvent) => void;
-  hasValue: () => boolean;
+  hasValue: boolean;
   clear: () => void;
   bindToInput: {
     onChange: (e: React.SyntheticEvent) => void;
