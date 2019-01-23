@@ -77,7 +77,7 @@ export function useLogger(name: string, props: any): void;
 export function useSetState<T>(
   initialState: T
 ): {
-  setState: Partial<T>;
+  setState: React.Dispatch<Partial<T>>,
   state: T;
 };
 

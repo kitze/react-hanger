@@ -135,8 +135,10 @@ export const useSetState = initialValue => {
   const { value, setValue } = useStateful(initialValue);
   return {
     setState: useCallback(v => {
-      let newValue = { ...value, ...v };
-      return setValue(newValue);
+      return setValue(oldValue => ({
+        ...oldValue,
+        ...(typeof v === "function" ? v(oldValue) : v)
+      }));
     }, []),
     state: value
   };
