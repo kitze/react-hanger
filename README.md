@@ -10,7 +10,6 @@
 
 # react-hanger
 
-> ⚠️ Warning: hooks are not part of a stable React release yet, so use this library only for experiments ⚠️
 
 <img width="450" src="https://i.imgur.com/JoBWJxS.png"/>
 
@@ -142,7 +141,7 @@ Methods:
 
 Both `increase` and `decrease` take an optional `amount` argument which is 1 by default, and will override the `step` property if it's used in the options.
 
-- `increase(amount = 1)` 
+- `increase(amount = 1)`
 - `decrease(amount = 1 )`
 
 Options:
