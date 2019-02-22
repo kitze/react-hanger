@@ -30,7 +30,7 @@ export function useArray<T = any>(
   initialState: T[]
 ): BaseType<T[]> & {
   add: (value: T) => void;
-  clear: (value: T) => void;
+  clear: () => void;
   removeById: (
     id: T extends { id: string }
       ? string
