@@ -1,6 +1,7 @@
-### 🙋‍♂️ Made by [@thekitze](https://twitter.com/thekitze)  
+### 🙋‍♂️ Made by [@thekitze](https://twitter.com/thekitze)
 
 ### Other projects:
+
 - 🏫 [React Academy](https://reactacademy.io) - Interactive React and GraphQL workshops
 - 💌 [Twizzy](https://twizzy.app) - A standalone app for Twitter DM
 - 💻 [Sizzy](https://sizzy.co) - A tool for testing responsive design on multiple devices at once
@@ -9,7 +10,7 @@
 ---
 
 # react-hanger
-
+[![npm version](https://badge.fury.io/js/react-hanger.svg)](https://badge.fury.io/js/react-hanger)
 
 <img width="450" src="https://i.imgur.com/JoBWJxS.png"/>
 
@@ -56,11 +57,7 @@ const App = () => {
       {showCounter.value && <span> {counter.value} </span>}
       <button onClick={counter.decrease}> decrease </button>
       <button onClick={todos.clear}> clear todos </button>
-      <input
-        type="text"
-        value={newTodo.value}
-        onChange={newTodo.onChange}
-      />
+      <input type="text" value={newTodo.value} onChange={newTodo.onChange} />
     </div>
   );
 };

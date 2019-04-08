@@ -1,9 +1,15 @@
 {
   "presets": [
-    ["env", {
-      "modules": false
-    }],
-    "stage-0",
-    "react"
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": {
+          "node": "10"
+        }
+      }
+    ],
+    "@babel/preset-react",
+    "@babel/preset-typescript"
   ]
 }
