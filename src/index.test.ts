@@ -1,8 +1,16 @@
 import { renderHook, cleanup, act } from 'react-hooks-testing-library'
-import { useArray, useBoolean, useSetState, useStateful } from './index'
+import {
+  useArray,
+  useBoolean,
+  useSetState,
+  useStateful,
+  useMap,
+  useNumber,
+  useInput,
+  useBindToInput,
+} from './index'
 
 afterEach(cleanup)
-
 describe('useStateful', () => {
   it('should change value', () => {
     const { result } = renderHook(() => useStateful('initial'))
@@ -14,6 +22,72 @@ describe('useStateful', () => {
   })
 })
 
+describe('useNumber', () => {
+  describe('hooks optimizations', () => {
+    it('should keep actions reference equality after value change', () => {
+      // given
+      const { result } = renderHook(() => useNumber(5))
+      const [, originalActionsReference] = result.current
+      expect(result.current[1]).toBe(originalActionsReference)
+      // when
+      act(() => originalActionsReference.increase(5))
+      // then
+      expect(originalActionsReference).toBe(result.current[1])
+    })
+  })
+})
+
+describe('useInput', () => {
+  describe('hooks optimizations', () => {
+    it('should keep actions reference equality after value change', () => {
+      // given
+      const { result } = renderHook(() => useInput(5))
+      const [, originalActionsReference] = result.current
+      expect(result.current[1]).toBe(originalActionsReference)
+      // when
+      act(() => originalActionsReference.setValue('1'))
+      // then
+      expect(originalActionsReference).toBe(result.current[1])
+    })
+  })
+})
+
+describe('useBindToInput', () => {
+  describe('hooks optimizations', () => {
+    it('should keep values array reference equality after rerender with no value change', () => {
+      // given
+      const { result, rerender } = renderHook(() => useBindToInput(useInput(5)))
+      const [originalValueArray] = result.current
+      expect(result.current[0]).toBe(originalValueArray)
+      // when
+      act(() => rerender())
+      // then
+      expect(originalValueArray).toEqual(result.current[0])
+      expect(originalValueArray).toBe(result.current[0])
+    })
+    it('should keep actions reference equality after value change', () => {
+      // given
+      const { result } = renderHook(() => useBindToInput(useInput(5)))
+      const [, originalActionsReference] = result.current
+      expect(result.current[1]).toBe(originalActionsReference)
+      // when
+      act(() => originalActionsReference.setValue('1'))
+      // then
+      expect(originalActionsReference).toBe(result.current[1])
+    })
+    it('should not keep bindings reference equality after value change', () => {
+      // given
+      const { result } = renderHook(() => useBindToInput(useInput(5)))
+      const [, actions, originalBindingsReference] = result.current
+      expect(result.current[2]).toBe(originalBindingsReference)
+      // when
+      act(() => actions.setValue('1'))
+      // then
+      expect(originalBindingsReference).not.toBe(result.current[2])
+    })
+  })
+})
+
 describe('useSetState', () => {
   it('should change and merge state', () => {
     type State = {
@@ -22,60 +96,81 @@ describe('useSetState', () => {
       field3?: number
     }
     const { result } = renderHook(() => useSetState<State>({ field: 1, field2: 2 }))
-    expect(result.current.state).toEqual({ field: 1, field2: 2 })
+    const [, actions] = result.current
 
-    act(() => result.current.setState({ field: 2, field3: 3 }))
+    expect(result.current[0]).toEqual({ field: 1, field2: 2 })
 
-    expect(result.current.state).toEqual({ field: 2, field2: 2, field3: 3 })
+    act(() => actions({ field: 2, field3: 3 }))
+
+    expect(result.current[0]).toEqual({ field: 2, field2: 2, field3: 3 })
+  })
+  describe('hooks optimizations', () => {
+    it('should keep actions reference equality after value change', () => {
+      // given
+      const { result } = renderHook(() => useSetState([]))
+      const [, originalActionsReference] = result.current
+      expect(result.current[1]).toBe(originalActionsReference)
+      // when
+      act(() => originalActionsReference([1]))
+      // then
+      expect(originalActionsReference).toBe(result.current[1])
+    })
   })
 })
 
 describe('useArray', () => {
   it('should add item', () => {
     const { result } = renderHook(() => useArray([]))
-    expect(result.current.value.length).toBe(0)
+    const [, actions] = result.current
+    expect(result.current[0].length).toBe(0)
 
-    act(() => result.current.add('test'))
+    act(() => actions.add('test'))
 
-    expect(result.current.value.length).toBe(1)
+    expect(result.current[0].length).toBe(1)
   })
 
   it('should remove item by index', () => {
     const { result } = renderHook(() => useArray(['test', 'test1', 'test2']))
-    expect(result.current.value.length).toBe(3)
+    const [, actions] = result.current
+    expect(result.current[0].length).toBe(3)
 
-    act(() => result.current.removeIndex(1))
+    act(() => actions.removeIndex(1))
 
-    expect(result.current.value.length).toBe(2)
-    expect(result.current.value[1]).toBe('test2')
+    expect(result.current[0].length).toBe(2)
+    expect(result.current[0][1]).toBe('test2')
   })
 
   it('should remove item by id', () => {
     const { result } = renderHook(() => useArray([{ id: 1 }, { id: 2 }]))
-    expect(result.current.value.length).toBe(2)
+    const [, actions] = result.current
+    expect(result.current[0].length).toBe(2)
 
-    act(() => result.current.removeById(2))
+    act(() => actions.removeById(2))
 
-    expect(result.current.value.length).toBe(1)
+    expect(result.current[0].length).toBe(1)
   })
 
   it('should clear the array', () => {
     const { result } = renderHook(() => useArray([1, 2, 3, 4, 5]))
-    expect(result.current.value.length).toBe(5)
+    const [, actions] = result.current
 
-    act(() => result.current.clear())
+    expect(result.current[0].length).toBe(5)
 
-    expect(result.current.value.length).toBe(0)
+    act(() => actions.clear())
+
+    expect(result.current[0].length).toBe(0)
   })
 
   it('should change array', () => {
     const { result } = renderHook(() => useArray([1, 2, 3, 4, 5]))
-    expect(result.current.value.length).toBe(5)
+    const [, actions] = result.current
 
-    act(() => result.current.setValue(it => [...it, 6]))
+    expect(result.current[0].length).toBe(5)
 
-    expect(result.current.value.length).toBe(6)
-    expect(result.current.value[5]).toBe(6)
+    act(() => actions.setValue(it => [...it, 6]))
+
+    expect(result.current[0].length).toBe(6)
+    expect(result.current[0][5]).toBe(6)
   })
 
   it.each`
@@ -88,38 +183,167 @@ describe('useArray', () => {
     'should move items in the array from: $from to: $to expected: $expected',
     ({ from, to, expected }) => {
       const { result } = renderHook(() => useArray([1, 2, 3, 4, 5]))
-      expect(result.current.value).toEqual([1, 2, 3, 4, 5])
-      act(() => result.current.move(from, to))
-      expect(result.current.value).toEqual(expected)
+      const [, actions] = result.current
+
+      expect(result.current[0]).toEqual([1, 2, 3, 4, 5])
+      act(() => actions.move(from, to))
+      expect(result.current[0]).toEqual(expected)
     },
   )
+
+  describe('hooks optimizations', () => {
+    it('should keep actions reference equality after value change', () => {
+      // given
+      const { result } = renderHook(() => useArray([]))
+      const [, originalActionsReference] = result.current
+      expect(result.current[1]).toBe(originalActionsReference)
+      // when
+      act(() => originalActionsReference.add(1))
+      // then
+      expect(originalActionsReference).toBe(result.current[1])
+    })
+  })
 })
 
 describe('useBoolean', () => {
   it('should set true', () => {
     const { result } = renderHook(() => useBoolean(false))
-    expect(result.current.value).toBe(false)
+    const [, actions] = result.current
 
-    act(() => result.current.setTrue())
+    expect(result.current[0]).toBe(false)
 
-    expect(result.current.value).toBe(true)
+    act(() => actions.setTrue())
+
+    expect(result.current[0]).toBe(true)
   })
+
   it('should set false', () => {
     const { result } = renderHook(() => useBoolean(true))
-    expect(result.current.value).toBe(true)
+    const [, actions] = result.current
 
-    act(() => result.current.setFalse())
+    expect(result.current[0]).toBe(true)
 
-    expect(result.current.value).toBe(false)
+    act(() => actions.setFalse())
+
+    expect(result.current[0]).toBe(false)
   })
+
   it('should toggle', () => {
     const { result } = renderHook(() => useBoolean(true))
-    expect(result.current.value).toBe(true)
+    const [, actions] = result.current
+    expect(result.current[0]).toBe(true)
 
-    act(() => result.current.toggle())
-    expect(result.current.value).toBe(false)
+    act(() => actions.toggle())
 
-    act(() => result.current.toggle())
-    expect(result.current.value).toBe(true)
+    expect(result.current[0]).toBe(false)
+
+    act(() => actions.toggle())
+    expect(result.current[0]).toBe(true)
+  })
+
+  describe('hooks optimizations', () => {
+    it('should keep actions reference equality after value change', () => {
+      // given
+      const { result } = renderHook(() => useBoolean(true))
+      const [, originalActionsReference] = result.current
+      expect(result.current[1]).toBe(originalActionsReference)
+      // when
+      act(() => originalActionsReference.setFalse())
+      // then
+      expect(originalActionsReference).toBe(result.current[1])
+    })
+  })
+})
+
+describe('useMap', () => {
+  describe('set', () => {
+    it('should update old value', () => {
+      // given
+      const { result } = renderHook(() => useMap<number, string>([[1, 'default']]))
+      const [, actions] = result.current
+      expect(result.current[0].get(1)).toBe('default')
+      // when
+      act(() => actions.set(1, 'changed'))
+      // then
+      expect(result.current[0].get(1)).toBe('changed')
+    })
+    it('should add new value', () => {
+      // given
+      const { result } = renderHook(() => useMap<number, string>())
+      const [, actions] = result.current
+      expect(result.current[0].get(1)).toBeUndefined()
+      // when
+      act(() => actions.set(1, 'added'))
+      // then
+      expect(result.current[0].get(1)).toBe('added')
+    })
+  })
+
+  describe('delete', () => {
+    it('should delete existing value', () => {
+      // given
+      const { result } = renderHook(() => useMap<number, string>([[1, 'existing']]))
+      const [, actions] = result.current
+      expect(result.current[0].get(1)).toBe('existing')
+      // when
+      act(() => actions.delete(1))
+      // then
+      expect(result.current[0].get(1)).toBeUndefined()
+    })
+  })
+
+  describe('initialize', () => {
+    it.each`
+      message    | input
+      ${'map'}   | ${new Map([[1, 'initialized']])}
+      ${'tuple'} | ${[[1, 'initialized']]}
+    `('initializes with $message', ({ input }) => {
+      // given
+      const { result } = renderHook(() => useMap<number, string>())
+      const [, actions] = result.current
+      expect(result.current[0].get(1)).toBeUndefined()
+      // when
+      act(() => actions.initialize(input))
+      // then
+      expect(result.current[0].get(1)).toBe('initialized')
+    })
+  })
+
+  describe('clear', () => {
+    it('clears the map state and gets values', () => {
+      // given
+      const { result } = renderHook(() => useMap<number, string>([[1, 'initialized']]))
+      const [, actions] = result.current
+      expect(result.current[0].get(1)).toBe('initialized')
+      // when
+      act(() => actions.clear())
+      // then
+      expect(result.current[0].get(1)).toBeUndefined()
+    })
+  })
+
+  describe('hooks optimizations', () => {
+    it('should change value reference equality after change', () => {
+      // given
+      const { result } = renderHook(() => useMap<number, number>())
+      const [originalValueReference, actions] = result.current
+      expect(result.current[0]).toBe(originalValueReference)
+      // when
+      act(() => actions.set(1, 1))
+      // then
+      expect(originalValueReference).not.toBe(result.current[0])
+      expect(originalValueReference.get(1)).toBeUndefined()
+      expect(result.current[0].get(1)).toBe(1)
+    })
+    it('should keep actions reference equality after value change', () => {
+      // given
+      const { result } = renderHook(() => useMap<number, number>())
+      const [, originalActionsReference] = result.current
+      expect(result.current[1]).toBe(originalActionsReference)
+      // when
+      act(() => originalActionsReference.set(1, 1))
+      // then
+      expect(originalActionsReference).toBe(result.current[1])
+    })
   })
 })

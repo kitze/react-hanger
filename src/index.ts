@@ -1,4 +1,12 @@
-import { useCallback, useEffect, useRef, useState, SetStateAction, useMemo } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  SetStateAction,
+  useMemo,
+  Dispatch,
+} from 'react'
 import * as React from 'react'
 
 type UseStateful<T = any> = {
@@ -18,10 +26,13 @@ export function useStateful<T = any>(initial: T): UseStateful<T> {
   )
 }
 
-export type UseNumber = UseStateful<number> & {
+export type UseNumberActions = {
+  setValue: UseStateful<number>['setValue']
   increase: (value?: number) => void
   decrease: (value?: number) => void
 }
+
+export type UseNumber = [number, UseNumberActions]
 
 export function useNumber(
   initial: number,
@@ -78,18 +89,19 @@ export function useNumber(
     },
     [initial, loop, step, upperLimit],
   )
-  return useMemo(
+  const actions = useMemo(
     () => ({
-      value,
       setValue,
       increase,
       decrease,
     }),
-    [decrease, increase, value],
+    [decrease, increase],
   )
+  return [value, actions]
 }
 
-type UseArray<T> = UseStateful<T[]> & {
+type UseArrayActions<T> = {
+  setValue: UseStateful<T[]>['setValue']
   add: (value: T) => void
   clear: () => void
   move: (from: number, to: number) => void
@@ -98,6 +110,8 @@ type UseArray<T> = UseStateful<T[]> & {
   ) => void
   removeIndex: (index: number) => void
 }
+
+type UseArray<T = any> = [T[], UseArrayActions<T>]
 
 export function useArray<T = any>(initial: T[]): UseArray<T> {
   const [value, setValue] = useState(initial)
@@ -125,9 +139,8 @@ export function useArray<T = any>(initial: T[]): UseArray<T> {
       }),
     [],
   )
-  return useMemo(
+  const actions = useMemo(
     () => ({
-      value,
       setValue,
       add,
       move,
@@ -135,73 +148,90 @@ export function useArray<T = any>(initial: T[]): UseArray<T> {
       removeById,
       removeIndex,
     }),
-    [add, clear, move, removeById, removeIndex, value],
+    [add, clear, move, removeById, removeIndex],
   )
+  return [value, actions]
 }
 
-type UseBoolean = {
-  value: boolean
+type UseBooleanActions = {
   setValue: React.Dispatch<SetStateAction<boolean>>
   toggle: () => void
   setTrue: () => void
   setFalse: () => void
 }
 
+type UseBoolean = [boolean, UseBooleanActions]
+
 export function useBoolean(initial: boolean): UseBoolean {
   const [value, setValue] = useState<boolean>(initial)
   const toggle = useCallback(() => setValue(v => !v), [])
   const setTrue = useCallback(() => setValue(true), [])
   const setFalse = useCallback(() => setValue(false), [])
-  return useMemo(
-    () => ({
-      value,
-      setValue,
-      toggle,
-      setTrue,
-      setFalse,
-    }),
-    [setFalse, setTrue, toggle, value],
-  )
+  const actions = useMemo(() => ({ setValue, toggle, setTrue, setFalse }), [
+    setFalse,
+    setTrue,
+    toggle,
+  ])
+  return [value, actions]
 }
 
-type UseInput = UseStateful<string> & {
+type UseInputActions = {
+  setValue: UseStateful<string>['setValue']
   onChange: (e: React.SyntheticEvent) => void
-  hasValue: boolean
   clear: () => void
-  bindToInput: {
-    onChange: (e: React.SyntheticEvent) => void
-    value: string
-  }
-  bind: {
-    onChange: React.Dispatch<string>
-    value: string
-  }
 }
+type UseInput = [[string, boolean], UseInputActions]
 
 export function useInput(initial: string | number | boolean = ''): UseInput {
   const stringified = initial.toString()
   const [value, setValue] = useState<string>(stringified)
-  const onChange = useCallback(e => setValue(e.target.value), [])
+  const onChange = useCallback(e => setValue(e.target.value.toString()), [])
 
   const clear = useCallback(() => setValue(''), [])
-  return useMemo(
+  const hasValue = value !== undefined && value !== null && value.trim() !== ''
+  const actions = useMemo(
     () => ({
-      value,
       setValue,
-      hasValue: value !== undefined && value !== null && value.trim() !== '',
       clear,
       onChange,
-      bindToInput: {
-        onChange,
-        value,
-      },
-      bind: {
-        onChange: setValue,
-        value,
-      },
     }),
-    [clear, onChange, value],
+    [clear, onChange],
   )
+  const values = useMemo(() => [value, hasValue], [hasValue, value]) as [string, boolean]
+  return [values, actions]
+}
+
+type BindToInput = {
+  eventBind: {
+    onChange: (e: React.SyntheticEvent) => void
+    value: string
+  }
+  valueBind: {
+    onChange: React.Dispatch<string>
+    value: string
+  }
+}
+type UseBindToInput = [[string, boolean], UseInputActions, BindToInput]
+
+export function useBindToInput(useInputResult: UseInput): UseBindToInput {
+  const [values, actions] = useInputResult
+  return [
+    values,
+    actions,
+    useMemo(
+      () => ({
+        eventBind: {
+          onChange: actions.onChange,
+          value: values[0],
+        },
+        valueBind: {
+          onChange: actions.setValue,
+          value: values[0],
+        },
+      }),
+      [actions, values],
+    ),
+  ]
 }
 
 export function useLifecycleHooks({
@@ -241,13 +271,11 @@ export function useLogger(name: string, props: any): void {
 }
 /* eslint-enable no-console */
 
-export function useSetState<T>(
-  initialValue: T,
-): {
-  setState: React.Dispatch<SetStateAction<Partial<T>>>
-  state: T
-} {
-  const { value, setValue } = useStateful<T>(initialValue)
+type UseSetStateAction<T> = React.Dispatch<SetStateAction<Partial<T>>>
+type UseSetState<T> = [T, UseSetStateAction<T>]
+
+export function useSetState<T>(initialValue: T): UseSetState<T> {
+  const [value, setValue] = useState<T>(initialValue)
   const setState = useCallback(
     (v: SetStateAction<Partial<T>>) => {
       return setValue(oldValue => ({
@@ -257,13 +285,7 @@ export function useSetState<T>(
     },
     [setValue],
   )
-  return useMemo(
-    () => ({
-      setState,
-      state: value,
-    }),
-    [setState, value],
-  )
+  return [value, setState]
 }
 
 export function usePrevious<T = any>(value: T): T | undefined {
@@ -272,4 +294,58 @@ export function usePrevious<T = any>(value: T): T | undefined {
     ref.current = value
   })
   return ref.current
+}
+
+export type MapOrEntries<K, V> = Map<K, V> | [K, V][]
+
+export type UseMapFunctions<K, V> = {
+  setValue: Dispatch<SetStateAction<Map<K, V>>>
+  delete: (keyToDelete: K) => void
+  set: (key: K, value: V) => void
+  clear: Map<K, V>['clear']
+  initialize: (pairsOrMap: MapOrEntries<K, V>) => void
+}
+
+export type UseMap<K, V> = [Map<K, V>, UseMapFunctions<K, V>]
+
+export function useMap<K, V>(initialState: MapOrEntries<K, V> = new Map()): UseMap<K, V> {
+  const [map, setMap] = useState(
+    Array.isArray(initialState) ? new Map(initialState) : initialState,
+  )
+
+  const set = useCallback((key, value) => {
+    setMap(aMap => {
+      const copy = new Map(aMap)
+      return copy.set(key, value)
+    })
+  }, [])
+
+  const deleteByKey = useCallback(key => {
+    setMap(_map => {
+      const copy = new Map(_map)
+      copy.delete(key)
+      return copy
+    })
+  }, [])
+
+  const clear = useCallback(() => {
+    setMap(() => new Map())
+  }, [])
+
+  const initialize = useCallback((mapOrTuple: MapOrEntries<K, V> = []) => {
+    setMap(() => new Map(mapOrTuple))
+  }, [])
+
+  const actions = useMemo(
+    () => ({
+      setValue: setMap,
+      clear,
+      set,
+      delete: deleteByKey,
+      initialize,
+    }),
+    [clear, deleteByKey, initialize, set],
+  )
+
+  return [map, actions]
 }
