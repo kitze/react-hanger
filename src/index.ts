@@ -1,27 +1,27 @@
-import { useCallback, useEffect, useRef, useState, SetStateAction, useMemo } from 'react'
-import * as React from 'react'
+import { useCallback, useEffect, useRef, useState, SetStateAction, useMemo } from 'react';
+import * as React from 'react';
 
 type UseStateful<T = any> = {
-  value: T
-  setValue: React.Dispatch<SetStateAction<T>>
-}
-type Callback = (...args: any[]) => void | any
+  value: T;
+  setValue: React.Dispatch<SetStateAction<T>>;
+};
+type Callback = (...args: any[]) => void | any;
 
 export function useStateful<T = any>(initial: T): UseStateful<T> {
-  const [value, setValue] = useState(initial)
+  const [value, setValue] = useState(initial);
   return useMemo(
     () => ({
       value,
-      setValue,
+      setValue
     }),
-    [value],
-  )
+    [value]
+  );
 }
 
 export type UseNumber = UseStateful<number> & {
-  increase: (value?: number) => void
-  decrease: (value?: number) => void
-}
+  increase: (value?: number) => void;
+  decrease: (value?: number) => void;
+};
 
 export function useNumber(
   initial: number,
@@ -29,102 +29,100 @@ export function useNumber(
     upperLimit,
     lowerLimit,
     loop,
-    step = 1,
+    step = 1
   }: {
-    upperLimit?: number
-    lowerLimit?: number
-    loop?: boolean
-    step?: number
-  } = {},
+    upperLimit?: number;
+    lowerLimit?: number;
+    loop?: boolean;
+    step?: number;
+  } = {}
 ): UseNumber {
-  const [value, setValue] = useState<number>(initial)
+  const [value, setValue] = useState<number>(initial);
   const decrease = useCallback(
     (d?: number) => {
       setValue(aValue => {
-        const decreaseBy = d !== undefined ? d : step
-        const nextValue = aValue - decreaseBy
+        const decreaseBy = d !== undefined ? d : step;
+        const nextValue = aValue - decreaseBy;
 
         if (lowerLimit !== undefined) {
           if (nextValue + decreaseBy > lowerLimit) {
-            return nextValue
+            return nextValue;
           }
           if (loop && upperLimit) {
-            return upperLimit
+            return upperLimit;
           }
-          return aValue
+          return aValue;
         }
-        return nextValue
-      })
+        return nextValue;
+      });
     },
-    [loop, lowerLimit, step, upperLimit],
-  )
+    [loop, lowerLimit, step, upperLimit]
+  );
   const increase = useCallback(
     (i?: number) => {
       setValue(aValue => {
-        const increaseBy = i !== undefined ? i : step
-        const nextValue = aValue + increaseBy
+        const increaseBy = i !== undefined ? i : step;
+        const nextValue = aValue + increaseBy;
 
         if (upperLimit !== undefined) {
           if (nextValue - increaseBy < upperLimit) {
-            return nextValue
+            return nextValue;
           }
           if (loop) {
-            return initial
+            return initial;
           }
-          return aValue
+          return aValue;
         }
-        return nextValue
-      })
+        return nextValue;
+      });
     },
-    [initial, loop, step, upperLimit],
-  )
+    [initial, loop, step, upperLimit]
+  );
   return useMemo(
     () => ({
       value,
       setValue,
       increase,
-      decrease,
+      decrease
     }),
-    [decrease, increase, value],
-  )
+    [decrease, increase, value]
+  );
 }
 
 type UseArray<T> = UseStateful<T[]> & {
-  add: (value: T) => void
-  clear: () => void
-  move: (from: number, to: number) => void
-  removeById: (
-    id: T extends { id: string } ? string : T extends { id: number } ? number : unknown,
-  ) => void
-  removeIndex: (index: number) => void
-}
+  add: (value: T) => void;
+  clear: () => void;
+  move: (from: number, to: number) => void;
+  removeById: (id: T extends { id: string } ? string : T extends { id: number } ? number : unknown) => void;
+  removeIndex: (index: number) => void;
+};
 
 export function useArray<T = any>(initial: T[]): UseArray<T> {
-  const [value, setValue] = useState(initial)
-  const add = useCallback(a => setValue(v => [...v, a]), [])
+  const [value, setValue] = useState(initial);
+  const add = useCallback(a => setValue(v => [...v, a]), []);
   const move = useCallback(
     (from: number, to: number) =>
       setValue(it => {
-        const copy = it.slice()
-        copy.splice(to < 0 ? copy.length + to : to, 0, copy.splice(from, 1)[0])
-        return copy
+        const copy = it.slice();
+        copy.splice(to < 0 ? copy.length + to : to, 0, copy.splice(from, 1)[0]);
+        return copy;
       }),
-    [],
-  )
-  const clear = useCallback(() => setValue(() => []), [])
+    []
+  );
+  const clear = useCallback(() => setValue(() => []), []);
   const removeById = useCallback(
     // @ts-ignore not every array that you will pass down will have object with id field.
     id => setValue(arr => arr.filter(v => v && v.id !== id)),
-    [],
-  )
+    []
+  );
   const removeIndex = useCallback(
     index =>
       setValue(v => {
-        v.splice(index, 1)
-        return v
+        v.splice(index, 1);
+        return v;
       }),
-    [],
-  )
+    []
+  );
   return useMemo(
     () => ({
       value,
@@ -133,57 +131,57 @@ export function useArray<T = any>(initial: T[]): UseArray<T> {
       move,
       clear,
       removeById,
-      removeIndex,
+      removeIndex
     }),
-    [add, clear, move, removeById, removeIndex, value],
-  )
+    [add, clear, move, removeById, removeIndex, value]
+  );
 }
 
 type UseBoolean = {
-  value: boolean
-  setValue: React.Dispatch<SetStateAction<boolean>>
-  toggle: () => void
-  setTrue: () => void
-  setFalse: () => void
-}
+  value: boolean;
+  setValue: React.Dispatch<SetStateAction<boolean>>;
+  toggle: () => void;
+  setTrue: () => void;
+  setFalse: () => void;
+};
 
 export function useBoolean(initial: boolean): UseBoolean {
-  const [value, setValue] = useState<boolean>(initial)
-  const toggle = useCallback(() => setValue(v => !v), [])
-  const setTrue = useCallback(() => setValue(true), [])
-  const setFalse = useCallback(() => setValue(false), [])
+  const [value, setValue] = useState<boolean>(initial);
+  const toggle = useCallback(() => setValue(v => !v), []);
+  const setTrue = useCallback(() => setValue(true), []);
+  const setFalse = useCallback(() => setValue(false), []);
   return useMemo(
     () => ({
       value,
       setValue,
       toggle,
       setTrue,
-      setFalse,
+      setFalse
     }),
-    [setFalse, setTrue, toggle, value],
-  )
+    [setFalse, setTrue, toggle, value]
+  );
 }
 
 type UseInput = UseStateful<string> & {
-  onChange: (e: React.SyntheticEvent) => void
-  hasValue: boolean
-  clear: () => void
+  onChange: (e: React.SyntheticEvent) => void;
+  hasValue: boolean;
+  clear: () => void;
   bindToInput: {
-    onChange: (e: React.SyntheticEvent) => void
-    value: string
-  }
+    onChange: (e: React.SyntheticEvent) => void;
+    value: string;
+  };
   bind: {
-    onChange: React.Dispatch<string>
-    value: string
-  }
-}
+    onChange: React.Dispatch<string>;
+    value: string;
+  };
+};
 
 export function useInput(initial: string | number | boolean = ''): UseInput {
-  const stringified = initial.toString()
-  const [value, setValue] = useState<string>(stringified)
-  const onChange = useCallback(e => setValue(e.target.value), [])
+  const stringified = initial.toString();
+  const [value, setValue] = useState<string>(stringified);
+  const onChange = useCallback(e => setValue(e.target.value), []);
 
-  const clear = useCallback(() => setValue(''), [])
+  const clear = useCallback(() => setValue(''), []);
   return useMemo(
     () => ({
       value,
@@ -193,83 +191,58 @@ export function useInput(initial: string | number | boolean = ''): UseInput {
       onChange,
       bindToInput: {
         onChange,
-        value,
+        value
       },
       bind: {
         onChange: setValue,
-        value,
-      },
+        value
+      }
     }),
-    [clear, onChange, value],
-  )
-}
-
-export function useLifecycleHooks({
-  onMount,
-  onUnmount,
-}: {
-  onMount?: Callback
-  onUnmount?: Callback
-}) {
-  return useEffect(() => {
-    onMount && onMount()
-    return () => onUnmount && onUnmount()
-  }, [onMount, onUnmount])
-}
-
-export function useOnUnmount(onUnmount: Callback) {
-  return useEffect(() => {
-    return () => onUnmount && onUnmount()
-  }, [onUnmount])
-}
-
-export function useOnMount(onMount: Callback) {
-  return useEffect(() => {
-    onMount && onMount()
-  }, [onMount])
+    [clear, onChange, value]
+  );
 }
 
 /* eslint-disable no-console */
 export function useLogger(name: string, props: any): void {
-  useLifecycleHooks({
-    onMount: () => console.log(`${name} has mounted`),
-    onUnmount: () => console.log(`${name} has unmounted`),
-  })
   useEffect(() => {
-    console.log('Props updated', props)
-  })
+    console.log(`${name} has mounted`);
+    return () => console.log(`${name} has unmounted`);
+  }, []);
+  useEffect(() => {
+    console.log('Props updated', props);
+  }, [props]);
 }
 /* eslint-enable no-console */
 
 export function useSetState<T>(
-  initialValue: T,
+  initialValue: T
 ): {
-  setState: React.Dispatch<SetStateAction<Partial<T>>>
-  state: T
+  setState: React.Dispatch<SetStateAction<Partial<T>>>;
+  state: T;
 } {
-  const { value, setValue } = useStateful<T>(initialValue)
+  const { value, setValue } = useStateful<T>(initialValue);
   const setState = useCallback(
     (v: SetStateAction<Partial<T>>) => {
       return setValue(oldValue => ({
         ...oldValue,
-        ...(typeof v === 'function' ? v(oldValue) : v),
-      }))
+        ...(typeof v === 'function' ? v(oldValue) : v)
+      }));
     },
-    [setValue],
-  )
+    [setValue]
+  );
   return useMemo(
     () => ({
       setState,
-      state: value,
+      state: value
     }),
-    [setState, value],
-  )
+    [setState, value]
+  );
 }
 
 export function usePrevious<T = any>(value: T): T | undefined {
-  const ref = useRef<T>()
+  const ref = useRef<T>();
   useEffect(() => {
-    ref.current = value
-  })
-  return ref.current
+    ref.current = value;
+  });
+  return ref.current;
 }
