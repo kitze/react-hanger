@@ -28,7 +28,7 @@
     "prebuild": "rimraf lib && mkdir lib && npm run test",
     "build": "npm run build:es6 && npm run build:require",
     "postbuild": "node copyPackageJsonAndReadme.js",
-    "prerelease": "build",
+    "prerelease": "npm run build",
     "release": "npm publish lib",
     "release:beta": "prerelease && npm publish lib --tag beta"
   },
