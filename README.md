@@ -1,4 +1,5 @@
-### 🙋‍♂️ Made by [@thekitze](https://twitter.com/thekitze)
+### 🙋‍♂️ Made by [@thekitze](https://twitter.com/thekitze), improved by [@rip212](https://twitter.com/rip212)
+
 
 ### Other projects:
 
@@ -13,6 +14,13 @@
 [![npm version](https://badge.fury.io/js/react-hanger.svg)](https://badge.fury.io/js/react-hanger)
 
 <img width="450" src="https://i.imgur.com/JoBWJxS.png"/>
+
+Set of a helpful hooks, for different specific to some primitives types state changing helpers.
+Has two APIs:
+- [First](#Example) and original from v1 is based on object destructuring e.g. `const { value, toggle } = useBoolean(false)` (Docs below)
+- [Second API](./README-ARRAY.md) (recommended [why?](./README-ARRAY.md#migration-from-object-to-array-based)) is based on more idiomatic to React hooks API, e.g. like `useState` with array destructuring 
+`const [value, actions] = useBoolean(false)` [(Docs)](./README-ARRAY.md)
+
 
 ## Install
 
@@ -47,9 +55,6 @@ const App = () => {
     loop: true
   });
 
-  useOnMount(() => console.log("hello world"));
-  useOnUnmount(() => console.log("goodbye world"));
-
   return (
     <div>
       <button onClick={showCounter.toggle}> toggle counter </button>
@@ -62,21 +67,24 @@ const App = () => {
   );
 };
 ```
+
 ### Example
 
 [Open in CodeSandbox](https://codesandbox.io/s/44m70xm70)
+
+## API reference (object destructuring)
+
+### How to import?
+
+```
+import { useBoolean } from 'react-hanger' // will import all of functions
+import useBoolean from 'react-hanger/useBoolean' // will import only this function
+```
 
 ### useStateful
 
 Just an alternative syntax to `useState`, because it doesn't need array destructuring.  
 It returns an object with `value` and a `setValue` method.
-
-```typescript
-type UseStateful<T = any> = {
-  value: T
-  setValue: React.Dispatch<React.SetStateAction<T>>
-}
-```
 
 ```jsx
 const username = useStateful("test");
@@ -85,44 +93,13 @@ username.setValue("tom");
 console.log(username.value);
 ```
 
-### useOnMount
-
-```jsx
-const App = () => {
-  useOnMount(() => console.log("hello world"));
-  return <div> hello world </div>;
-};
-```
-
-### useOnUnmount
-
-```jsx
-const App = () => {
-  useOnUnmount(() => console.log("goodbye world"));
-  return <div> goodbye world </div>;
-};
-```
-
-### useLifecycleHooks
-
-```jsx
-const App = () => {
-  useLifecycleHooks({
-    onMount: () => console.log("mounted!"),
-    onUnmount: () => console.log("unmounted!")
-  });
-
-  return <div> hello world </div>;
-};
-```
-
 ### useBoolean
 
 ```jsx
-const [showCounter, actions] = useBoolean(true);
+const showCounter = useBoolean(true);
 ```
 
-Actions:
+Methods:
 
 - `toggle`
 - `setTrue`
@@ -140,7 +117,7 @@ const rotatingNumber = useNumber(0, {
 });
 ```
 
-Actions:
+Methods:
 
 Both `increase` and `decrease` take an optional `amount` argument which is 1 by default, and will override the `step` property if it's used in the options.
 
@@ -156,62 +133,37 @@ Options:
 
 ### useInput
 
-This one is unique, since it returns tuple as a first element, where first element is `value` and second is `hasValue`
-Second element is `actions` as usual
-
-```typescript
-type UseInputActions = {
-  setValue: UseStateful<string>['setValue'] // Look above
-  onChange: (e: React.SyntheticEvent) => void
-  clear: () => void
-}
-type UseInput = [[string, boolean], UseInputActions]
+```jsx
+const newTodo = useInput("");
 ```
 
 ```jsx
-const [[newTodo], actions] = useInput("");
+<input value={newTodo.value} onChange={newTodo.onChange} />
 ```
 
 ```jsx
-<input value={newTodo} onChange={actions.onChange} />
+<input {...newTodo.bindToInput} />
+<Slider {...newTodo.bind} />
 ```
-Actions:
+
+Methods:
 
 - `clear`
-- `onChange` - default native event.target.value handler
+- `onChange`
+- `eventBind` - binds the `value` and `onChange` props to an input that has `e.target.value`
+- `valueBind` - binds the `value` and `onChange` props to an input that's using only `value` in `onChange` (like most external components)
 
 Properties:
 
-- `hasValue` -
-
-### useBindToInput
-
-Designed to be used in composition with `useInput`.
-First and second elements are the same as `useInput.
-Third are bindings to spread.
-
-```jsx
-const [[newTodo], actions, { nativeBind, valueBind }] = useBindToInput(useInput(""));
-```
-
-```jsx
-<input value={newTodo} onChange={actions.onChange} />
-<input {...nativeBind} />
-<Slider {...valueBind} />
-```
-
-Actions:
-
-- `nativeBind` - binds the `value` and `onChange` props to an input that has `e.target.value`
-- `valueBind` - binds the `value` and `onChange` props to an input that's using only `value` in `onChange` (like most external components)
+- `hasValue`
 
 ### useArray
 
 ```jsx
-const [todos, actions] = useArray([]);
+const todos = useArray([]);
 ```
 
-Actions:
+Methods:
 
 - `add`
 - `clear`
@@ -232,27 +184,26 @@ all of them will be removed
 ### useMap
 
 ```jsx
-const [someMap, someMapActions] = useMap([["key", "value"]]);
-const [anotherMap, anotherMapActions] = useMap(new Map([["key", "value"]]));
+const { value, set } = useMap([["key", "value"]]);
+const { value: anotherValue, remove } = useMap(new Map([["key", "value"]]));
 ```
 
 Actions:
 
 - `set`
-- `delete`
+- `remove`
 - `clear`
 - `initialize` - applies tuples or map instances
 - `setValue`
- 
 
-## useSetState
+### useSetState
 
 ```jsx
-const [state, setState] = useSetState({ loading: false });
+const { state, setState } = useSetState({ loading: false });
 setState({ loading: true, data: [1, 2, 3] });
 ```
 
-Actions:
+Methods:
 
 - `setState(value)` - will merge the `value` with the current `state` (like this.setState works in React)
 
@@ -260,7 +211,7 @@ Properties:
 
 - `state` - the current state
 
-## usePrevious
+### usePrevious
 
 Use it to get the previous value of a prop or a state value.  
 It's from the official [React Docs](https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state).  
@@ -278,50 +229,27 @@ const Counter = () => {
 };
 ```
 
-### Migration from v1 to v2
+## Migration from v1 to v2
 
-All value based hooks like `useBoolean`, `useNumber` etc. Are changed to 
-be using arrays, since it's more safe for reference equality, and also 
-makes it easier to use many `useSmth` without renaming `value` in destructuring.
-
-So if you had 
+- Migration to array based API is a bit more complex but recommended (especially if you're using ESLint rules for hooks). 
+Take a look at [this section](./README-ARRAY.md#migration-from-object-to-array-based) in array API docs.
+- All lifecycle helpers are got removed, please replace them with `useEffect`
+`useOnMount` and `useOnUnmount` and `useLifecycleHooks`:  
+This:
 ```javascript
-const { value: showHeader, ...showHeaderActions } = useBoolean(true)
-const { value: showFooter, ...setShowFooterActions } = useBoolean(true)
+useOnMount(() => console.log("I'm mounted!"))
+useOnUnmount(() =>  console.log("I'm unmounted"))
+// OR
+useLifecycleHooks({ 
+  onMount: () => console.log("I'm mounted!"),
+  onUnmount: () => console.log("I'm unmounted!") 
+})
 ```
-It will become
+to:
 ```javascript
-const [showHeader, showHeaderActions] = useBoolean(true)
-const [showFooter, showFooterActions] = useBoolean(true)
+useEffect(() => {
+  console.log("I'm mounted!");
+  return () =>  console.log("I'm unmounted");
+}, []);
 ```
-
-Note that despite this code seems to be looking the same, it's not. Cause `showHeaderActions` in v1 will result
-in new object reference every rerender. While in v2 actions are memoized using `useMemo` and their reference will not
-change.
-It enables us passing `actions` down the props without useless re-renders, also it prevents `useEffects` and
-other hooks from re-run/new reference if autofix of ESLint rule `react-hooks/extraneous-deps` will add them as dependencies.
-
-### useInput migration
-Also big change to the `useInput`
-If before you was not using `bind` and `bindToInput` from them, then using the same approach from above
-you will get what you want. 
-But if you need bindings you need to compose `useInput` with `useBindToInput` like that:
-So if you had
-```jsx
-const { value, bindToInput, bind, onChange, hasValue } = useInput("")
-
-<input value={value} onChange={onChange} />
-<input {...bindToInput} />
-{hasValue && <Slider {...bind} />}
-```
-It will become
-```jsx
-const [[value, hasValue], actions, { nativeBind, valueBind }] = useBindToInput(useInput(""))
-
-<input value={value} onChange={actions.onChange} />
-<input {...nativeBind} />
-{hasValue && <Slider {...valueBind} />}
-```
-
-Note that first element in destructured array has tuple of `[value, hasValue]` since it's for values
-and second argument is for `action` e.g. only for functions.
+- `bind` and `bindToInput` are got renamed to `valueBind` and `eventBind` respectively on `useInput` hook

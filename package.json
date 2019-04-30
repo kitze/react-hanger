@@ -1,7 +1,7 @@
 {
   "name": "react-hanger",
-  "version": "1.2.0",
-  "description": "",
+  "version": "2.0.0",
+  "description": "Set of a helpful hooks, for different specific to some primitives types state changing helpers",
   "author": "kitze",
   "license": "MIT",
   "repository": "kitze/react-hanger",
@@ -12,64 +12,61 @@
       "url": "https://github.com/RIP21"
     }
   ],
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
-  "typings": "dist/index.d.ts",
+  "main": "index.js",
+  "module": "es6/index.js",
+  "jsnext:main": "es6/index.js",
+  "typings": "index.d.ts",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
   },
   "scripts": {
-    "test": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "generate-dts": "tsc -p tsconfig-dts.json",
-    "prebuild": "rimraf dist",
-    "build": "npm run generate-dts && rollup -c",
-    "start": "rollup -c -w",
-    "example": "cd ./example && yarn start",
-    "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "test": "jest src",
+    "test:watch": "npm run test -- --watch",
+    "build:es6": "tsc -p tsconfig.json",
+    "build:require": "tsc -p tsconfig-require.json",
+    "prebuild": "rimraf lib && mkdir lib && npm run test",
+    "build": "npm run build:es6 && npm run build:require",
+    "postbuild": "node copyPackageJsonAndReadme.js",
+    "prerelease": "build",
+    "release": "npm publish lib",
+    "release:beta": "prerelease && npm publish lib --tag beta"
   },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.3",
-    "@babel/plugin-syntax-typescript": "^7.3.3",
-    "@babel/preset-env": "^7.4.3",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/preset-typescript": "^7.3.3",
     "@types/jest": "^24.0.11",
     "@types/react": "^16.8.13",
     "cross-env": "^5.2.0",
     "gh-pages": "^1.2.0",
-    "prettier": "1.16.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hooks-testing-library": "^0.4.0",
     "react-testing-library": "^6.1.2",
-    "revolut-react-scripts": "^2.1.8-2",
     "rimraf": "^2.6.3",
-    "rollup": "^1.9.0",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-commonjs": "^9.3.4",
-    "rollup-plugin-node-resolve": "^4.2.1",
-    "rollup-plugin-peer-deps-external": "^2.2.0",
-    "rollup-plugin-postcss": "^2.0.3",
-    "rollup-plugin-url": "^2.2.0",
-    "typescript": "^3.4.2"
+    "typescript": "^3.4.2",
+    "jest": "^24.5.0",
+    "ts-jest": "^24.0.2",
+    "babel-eslint": "10.0.1",
+    "@typescript-eslint/parser": "1.5.0",
+    "@typescript-eslint/eslint-plugin": "1.5.0",
+    "eslint-plugin-react-hooks": "1.5.1",
+    "eslint": "5.16.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-prettier": "4.1.0",
+    "eslint-plugin-jest": "22.3.2",
+    "eslint-plugin-prettier": "3.0.1",
+    "eslint-plugin-flowtype": "2.50.3",
+    "eslint-plugin-import": "2.16.0",
+    "eslint-plugin-jsx-a11y": "6.2.1",
+    "eslint-plugin-react": "7.12.4",
+    "eslint-config-react-app": "3.0.8",
+    "eslint-config-revolut-react": "0.0.22",
+    "prettier": "1.17.0"
   },
-  "resolutions": {
-    "babel-jest": "24.5.0"
-  },
-  "files": [
-    "dist"
-  ],
   "favoriteScripts": [
-    "example",
-    "start"
-  ]
+    "test:watch"
+    ]
 }

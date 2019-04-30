@@ -23,3 +23,6 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+!/src/array/index.test.ts
+/main/
+/es6/
