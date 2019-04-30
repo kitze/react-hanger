@@ -1,4 +1,5 @@
-### 🙋‍♂️ Made by [@thekitze](https://twitter.com/thekitze)
+### 🙋‍♂️ Made by [@thekitze](https://twitter.com/thekitze), improved by [@rip212](https://twitter.com/rip212)
+
 
 ### Other projects:
 
@@ -13,6 +14,13 @@
 [![npm version](https://badge.fury.io/js/react-hanger.svg)](https://badge.fury.io/js/react-hanger)
 
 <img width="450" src="https://i.imgur.com/JoBWJxS.png"/>
+
+Set of a helpful hooks, for different specific to some primitives types state changing helpers.
+Has two APIs:
+- [First](#Example) and original from v1 is based on object destructuring e.g. `const { value, toggle } = useBoolean(false)` (Docs below)
+- [Second API](./README-ARRAY.md) (recommended [why?](./README-ARRAY.md#migration-from-object-to-array-based)) is based on more idiomatic to React hooks API, e.g. like `useState` with array destructuring 
+`const [value, actions] = useBoolean(false)` [(Docs)](./README-ARRAY.md)
+
 
 ## Install
 
@@ -47,9 +55,6 @@ const App = () => {
     loop: true
   });
 
-  useOnMount(() => console.log("hello world"));
-  useOnUnmount(() => console.log("goodbye world"));
-
   return (
     <div>
       <button onClick={showCounter.toggle}> toggle counter </button>
@@ -67,6 +72,15 @@ const App = () => {
 
 [Open in CodeSandbox](https://codesandbox.io/s/44m70xm70)
 
+## API reference (object destructuring)
+
+### How to import?
+
+```
+import { useBoolean } from 'react-hanger' // will import all of functions
+import useBoolean from 'react-hanger/useBoolean' // will import only this function
+```
+
 ### useStateful
 
 Just an alternative syntax to `useState`, because it doesn't need array destructuring.  
@@ -77,37 +91,6 @@ const username = useStateful("test");
 
 username.setValue("tom");
 console.log(username.value);
-```
-
-### useOnMount
-
-```jsx
-const App = () => {
-  useOnMount(() => console.log("hello world"));
-  return <div> hello world </div>;
-};
-```
-
-### useOnUnmount
-
-```jsx
-const App = () => {
-  useOnUnmount(() => console.log("goodbye world"));
-  return <div> goodbye world </div>;
-};
-```
-
-### useLifecycleHooks
-
-```jsx
-const App = () => {
-  useLifecycleHooks({
-    onMount: () => console.log("mounted!"),
-    onUnmount: () => console.log("unmounted!")
-  });
-
-  return <div> hello world </div>;
-};
 ```
 
 ### useBoolean
@@ -167,8 +150,8 @@ Methods:
 
 - `clear`
 - `onChange`
-- `bindToInput` - binds the `value` and `onChange` props to an input that has `e.target.value`
-- `bind` - binds the `value` and `onChange` props to an input that's using only `e` in `onChange` (like most external components)
+- `eventBind` - binds the `value` and `onChange` props to an input that has `e.target.value`
+- `valueBind` - binds the `value` and `onChange` props to an input that's using only `value` in `onChange` (like most external components)
 
 Properties:
 
@@ -198,7 +181,22 @@ all of them will be removed
     -3    | -4    | [1, 3, 2, 4, 5]
 ```
 
-## useSetState
+### useMap
+
+```jsx
+const { value, set } = useMap([["key", "value"]]);
+const { value: anotherValue, remove } = useMap(new Map([["key", "value"]]));
+```
+
+Actions:
+
+- `set`
+- `remove`
+- `clear`
+- `initialize` - applies tuples or map instances
+- `setValue`
+
+### useSetState
 
 ```jsx
 const { state, setState } = useSetState({ loading: false });
@@ -213,7 +211,7 @@ Properties:
 
 - `state` - the current state
 
-## usePrevious
+### usePrevious
 
 Use it to get the previous value of a prop or a state value.  
 It's from the official [React Docs](https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state).  
@@ -230,3 +228,28 @@ const Counter = () => {
   );
 };
 ```
+
+## Migration from v1 to v2
+
+- Migration to array based API is a bit more complex but recommended (especially if you're using ESLint rules for hooks). 
+Take a look at [this section](./README-ARRAY.md#migration-from-object-to-array-based) in array API docs.
+- All lifecycle helpers are got removed, please replace them with `useEffect`
+`useOnMount` and `useOnUnmount` and `useLifecycleHooks`:  
+This:
+```javascript
+useOnMount(() => console.log("I'm mounted!"))
+useOnUnmount(() =>  console.log("I'm unmounted"))
+// OR
+useLifecycleHooks({ 
+  onMount: () => console.log("I'm mounted!"),
+  onUnmount: () => console.log("I'm unmounted!") 
+})
+```
+to:
+```javascript
+useEffect(() => {
+  console.log("I'm mounted!");
+  return () =>  console.log("I'm unmounted");
+}, []);
+```
+- `bind` and `bindToInput` are got renamed to `valueBind` and `eventBind` respectively on `useInput` hook
