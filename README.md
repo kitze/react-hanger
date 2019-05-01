@@ -58,9 +58,9 @@ const App = () => {
   return (
     <div>
       <button onClick={showCounter.toggle}> toggle counter </button>
-      <button onClick={counter.increase}> increase </button>
+      <button onClick={() => counter.increase()}> increase </button>
       {showCounter.value && <span> {counter.value} </span>}
-      <button onClick={counter.decrease}> decrease </button>
+      <button onClick={() => counter.decrease()}> decrease </button>
       <button onClick={todos.clear}> clear todos </button>
       <input type="text" value={newTodo.value} onChange={newTodo.onChange} />
     </div>
@@ -142,8 +142,8 @@ const newTodo = useInput("");
 ```
 
 ```jsx
-<input {...newTodo.bindToInput} />
-<Slider {...newTodo.bind} />
+<input {...newTodo.eventBind} />
+<Slider {...newTodo.valueBind} />
 ```
 
 Methods:
