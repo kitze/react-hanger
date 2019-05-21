@@ -6,6 +6,7 @@ import { useBoolean } from './useBoolean';
 import { useInput } from './useInput';
 import { useSetState } from './useSetState';
 import { useMap } from './useMap';
+import { useSet } from './useSet';
 
 afterEach(cleanup);
 describe('useStateful', () => {
@@ -356,6 +357,119 @@ describe('useMap', () => {
       act(() => set(1, 1));
       // then
       expect(set).toBe(result.current.set);
+    });
+  });
+});
+
+describe('useSet', () => {
+  const initial = new Set([1, 2, 3]);
+
+  it('should update old value', () => {
+    // given
+    const { result } = renderHook(() => useSet<number>(initial));
+    const { value, setValue } = result.current;
+    expect(value).toEqual(initial);
+    // when
+    act(() => setValue(new Set([2])));
+    // then
+    expect(result.current.value).toEqual(new Set([2]));
+  });
+
+  it('should add new value', () => {
+    // given
+    const { result } = renderHook(() => useSet<number>(initial));
+    const { add } = result.current;
+    // when
+    act(() => add(4));
+    // then
+    expect(result.current.value).toEqual(new Set([1, 2, 3, 4]));
+  });
+
+  it('should remove a value', () => {
+    // given
+    const { result } = renderHook(() => useSet<number>(initial));
+    const { remove } = result.current;
+    // when
+    act(() => remove(2));
+    // then
+    expect(result.current.value).toEqual(new Set([1, 3]));
+  });
+
+  it('should clear', () => {
+    // given
+    const { result } = renderHook(() => useSet<number>(initial));
+    const { clear } = result.current;
+    // when
+    act(() => clear());
+    // then
+    expect(result.current.value).toEqual(new Set());
+  });
+
+  it('should check presence', () => {
+    // given
+    const { result } = renderHook(() => useSet<number>(initial));
+    const { has } = result.current;
+    // then
+    expect(has(0)).toBeFalsy();
+    expect(has(2)).toBeTruthy();
+  });
+
+  it('should return keys', () => {
+    // given
+    const initial = new Set([1, 2, 3]);
+    const { result } = renderHook(() => useSet<number>(initial));
+    const { keys } = result.current;
+    // then
+    expect(Array.from(keys())).toEqual([1, 2, 3]);
+  });
+
+  it('should return values', () => {
+    // given
+    const initial = new Set([1, 2, 3]);
+    const { result } = renderHook(() => useSet<number>(initial));
+    const { values } = result.current;
+    // then
+    expect(Array.from(values())).toEqual([1, 2, 3]);
+  });
+
+  it('should return entries', () => {
+    // given
+    const initial = new Set([1, 2, 3]);
+    const { result } = renderHook(() => useSet<number>(initial));
+    const { entries } = result.current;
+    // then
+    expect(Array.from(entries())).toEqual([[1, 1], [2, 2], [3, 3]]);
+  });
+
+  it('should be an iterator', () => {
+    // given
+    const initial = new Set([1, 2, 3]);
+    const { result } = renderHook(() => useSet<number>(initial));
+    // then
+    expect(Array.from(result.current)).toEqual([1, 2, 3]);
+  });
+
+  describe('hooks optimizations', () => {
+    it('should change value reference equality after change', () => {
+      // given
+      const { result } = renderHook(() => useSet<number>());
+      const { value, setValue } = result.current;
+      expect(result.current.value).toBe(value);
+      // when
+      act(() => setValue(initial));
+      // then
+      expect(value).not.toBe(result.current.value);
+    });
+
+    it('should keep actions reference equality after value change', () => {
+      // given
+      const { result } = renderHook(() => useSet<number>());
+      const { setValue } = result.current;
+      expect(result.current.setValue).toBe(setValue);
+      // when
+      act(() => setValue(new Set([1, 1])));
+      // then
+      expect(setValue).toBe(result.current.setValue);
     });
   });
 });
