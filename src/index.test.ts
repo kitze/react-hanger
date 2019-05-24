@@ -367,12 +367,12 @@ describe('useSet', () => {
   it('should update old value', () => {
     // given
     const { result } = renderHook(() => useSet<number>(initial));
-    const { value, setValue } = result.current;
-    expect(value).toEqual(initial);
+    const { setValue } = result.current;
+    expect(new Set(result.current)).toEqual(initial);
     // when
     act(() => setValue(new Set([2])));
     // then
-    expect(result.current.value).toEqual(new Set([2]));
+    expect(new Set(result.current)).toEqual(new Set([2]));
   });
 
   it('should add new value', () => {
@@ -382,7 +382,7 @@ describe('useSet', () => {
     // when
     act(() => add(4));
     // then
-    expect(result.current.value).toEqual(new Set([1, 2, 3, 4]));
+    expect(new Set(result.current)).toEqual(new Set([1, 2, 3, 4]));
   });
 
   it('should remove a value', () => {
@@ -392,7 +392,7 @@ describe('useSet', () => {
     // when
     act(() => remove(2));
     // then
-    expect(result.current.value).toEqual(new Set([1, 3]));
+    expect(new Set(result.current)).toEqual(new Set([1, 3]));
   });
 
   it('should clear', () => {
@@ -402,7 +402,7 @@ describe('useSet', () => {
     // when
     act(() => clear());
     // then
-    expect(result.current.value).toEqual(new Set());
+    expect(new Set(result.current)).toEqual(new Set());
   });
 
   it('should check presence', () => {
@@ -453,12 +453,11 @@ describe('useSet', () => {
     it('should change value reference equality after change', () => {
       // given
       const { result } = renderHook(() => useSet<number>());
-      const { value, setValue } = result.current;
-      expect(result.current.value).toBe(value);
+      const value = result.current;
       // when
-      act(() => setValue(initial));
+      act(() => value.setValue(initial));
       // then
-      expect(value).not.toBe(result.current.value);
+      expect(value).not.toBe(result.current);
     });
 
     it('should keep actions reference equality after value change', () => {

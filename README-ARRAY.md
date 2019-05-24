@@ -27,7 +27,7 @@ const [limitedNumber] = useNumber(3, { upperLimit: 5, lowerLimit: 3 });
 const [rotatingNumber] = useNumber(0, {
   upperLimit: 5,
   lowerLimit: 0,
-  loop: true
+  loop: true,
 });
 ```
 
@@ -53,19 +53,20 @@ Second element is `actions` as usual
 ```typescript
 type UseInputActions = {
   setValue: React.Dispatch<SetStateAction<string>>;
-  onChange: (e: React.SyntheticEvent) => void
-  clear: () => void
-}
-type UseInput = [[string, boolean], UseInputActions]
+  onChange: (e: React.SyntheticEvent) => void;
+  clear: () => void;
+};
+type UseInput = [[string, boolean], UseInputActions];
 ```
 
 ```jsx
-const [[newTodo], actions] = useInput("");
+const [[newTodo], actions] = useInput('');
 ```
 
 ```jsx
 <input value={newTodo} onChange={actions.onChange} />
 ```
+
 Actions:
 
 - `clear`
@@ -82,7 +83,7 @@ First and second elements are the same as `useInput.
 Third are bindings to spread.
 
 ```jsx
-const [[newTodo], actions, { nativeBind, valueBind }] = useBindToInput(useInput(""));
+const [[newTodo], actions, { nativeBind, valueBind }] = useBindToInput(useInput(''));
 ```
 
 ```jsx
@@ -108,11 +109,12 @@ Actions:
 - `clear`
 - `removeIndex`
 - `removeById` - if array consists of objects with some specific `id` that you pass
-all of them will be removed
-- `move` - moves item from position to position shifting other elements. 
+  all of them will be removed
+- `move` - moves item from position to position shifting other elements.
+
 ```
     So if input is [1, 2, 3, 4, 5]
-    
+
     from  | to    | expected
     3     | 0     | [4, 1, 2, 3, 5]
     -1    | 0     | [5, 1, 2, 3, 4]
@@ -123,8 +125,8 @@ all of them will be removed
 ### useMap
 
 ```jsx
-const [someMap, someMapActions] = useMap([["key", "value"]]);
-const [anotherMap, anotherMapActions] = useMap(new Map([["key", "value"]]));
+const [someMap, someMapActions] = useMap([['key', 'value']]);
+const [anotherMap, anotherMapActions] = useMap(new Map([['key', 'value']]));
 ```
 
 Actions:
@@ -134,7 +136,22 @@ Actions:
 - `clear`
 - `initialize` - applies tuples or map instances
 - `setValue`
- 
+
+### useSet
+
+```jsx
+const [ value, actions ] = useSet(new Set<number>([1, 2));
+```
+
+`value` - a Set with only non mutating methods of a plain JS Set
+
+Actions:
+Mutating methods of a Set
+
+- `setValue`
+- `add`
+- `remove`
+- `clear`
 
 ## useSetState
 
@@ -171,33 +188,38 @@ const Counter = () => {
 
 ### Migration from object to array based
 
-All value based hooks like `useBoolean`, `useNumber` etc. Are changed to 
-be using arrays, since it's more safe for reference equality, and also 
+All value based hooks like `useBoolean`, `useNumber` etc. Are changed to
+be using arrays, since it's more safe for reference equality, and also
 makes it easier to use many `useSmth` without renaming `value` in destructuring.
 
-So if you had 
+So if you had
+
 ```javascript
-const { value: showHeader, ...showHeaderActions } = useBoolean(true)
-const { value: showFooter, ...setShowFooterActions } = useBoolean(true)
+const { value: showHeader, ...showHeaderActions } = useBoolean(true);
+const { value: showFooter, ...setShowFooterActions } = useBoolean(true);
 ```
+
 It will become
+
 ```javascript
-const [showHeader, showHeaderActions] = useBoolean(true)
-const [showFooter, showFooterActions] = useBoolean(true)
+const [showHeader, showHeaderActions] = useBoolean(true);
+const [showFooter, showFooterActions] = useBoolean(true);
 ```
 
 Note that despite this code seems to be looking the same, it's not. Cause `showHeaderActions` in v1 will result
-in new object reference every rerender (because spreading creates new object, hence new reference). While in v2 actions are memoized 
+in new object reference every rerender (because spreading creates new object, hence new reference). While in v2 actions are memoized
 using `useMemo` and their reference will not change, cause they are not rely on value.
 It enables us passing `actions` down the props without useless re-renders and excessive destructuring, it prevents `useEffects` and
 other hooks from re-run/new reference creation if autofix of ESLint rule `react-hooks/extraneous-deps` will add them as dependencies automatically.
 
 ### useInput migration
+
 Also big change to the `useInput`
 If before you was not using `eventBind` and `nativeBind` from them, then using the same approach from above
-you will get what you want. 
+you will get what you want.
 But if you need bindings you need to compose `useInput` with `useBindToInput` like that:
 So if you had
+
 ```jsx
 const { value, eventBind, valueBind, onChange, hasValue } = useInput("")
 
@@ -205,7 +227,9 @@ const { value, eventBind, valueBind, onChange, hasValue } = useInput("")
 <input {...eventBind} />
 {hasValue && <Slider {...valueBind} />}
 ```
+
 It will become
+
 ```jsx
 const [[value, hasValue], actions, { eventBind, valueBind }] = useBindToInput(useInput(""))
 

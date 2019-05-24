@@ -3,6 +3,7 @@ export * from './useBoolean';
 export * from './useInput';
 export * from './useLogger';
 export * from './useMap';
+export * from './useSet';
 export * from './useNumber';
 export * from './usePrevious';
 export * from './useSetState';

@@ -1,6 +1,5 @@
 ### 🙋‍♂️ Made by [@thekitze](https://twitter.com/thekitze), improved by [@rip212](https://twitter.com/rip212)
 
-
 ### Other projects:
 
 - 🏫 [React Academy](https://reactacademy.io) - Interactive React and GraphQL workshops
@@ -11,16 +10,17 @@
 ---
 
 # react-hanger
+
 [![npm version](https://badge.fury.io/js/react-hanger.svg)](https://badge.fury.io/js/react-hanger)
 
 <img width="450" src="https://i.imgur.com/JoBWJxS.png"/>
 
 Set of a helpful hooks, for different specific to some primitives types state changing helpers.
 Has two APIs:
-- [First](#Example) and original from v1 is based on object destructuring e.g. `const { value, toggle } = useBoolean(false)` (Docs below)
-- [Second API](./README-ARRAY.md) (recommended [why?](./README-ARRAY.md#migration-from-object-to-array-based)) is based on more idiomatic to React hooks API, e.g. like `useState` with array destructuring 
-`const [value, actions] = useBoolean(false)` [(Docs)](./README-ARRAY.md)
 
+- [First](#Example) and original from v1 is based on object destructuring e.g. `const { value, toggle } = useBoolean(false)` (Docs below)
+- [Second API](./README-ARRAY.md) (recommended [why?](./README-ARRAY.md#migration-from-object-to-array-based)) is based on more idiomatic to React hooks API, e.g. like `useState` with array destructuring
+  `const [value, actions] = useBoolean(false)` [(Docs)](./README-ARRAY.md)
 
 ## Install
 
@@ -31,28 +31,21 @@ yarn add react-hanger
 ## Usage
 
 ```jsx
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import {
-  useInput,
-  useBoolean,
-  useNumber,
-  useArray,
-  useOnMount,
-  useOnUnmount
-} from "react-hanger";
+import { useInput, useBoolean, useNumber, useArray, useOnMount, useOnUnmount } from 'react-hanger';
 
 const App = () => {
-  const newTodo = useInput("");
+  const newTodo = useInput('');
   const showCounter = useBoolean(true);
   const limitedNumber = useNumber(3, { lowerLimit: 0, upperLimit: 5 });
   const counter = useNumber(0);
-  const todos = useArray(["hi there", "sup", "world"]);
+  const todos = useArray(['hi there', 'sup', 'world']);
 
   const rotatingNumber = useNumber(0, {
     lowerLimit: 0,
     upperLimit: 4,
-    loop: true
+    loop: true,
   });
 
   return (
@@ -87,9 +80,9 @@ Just an alternative syntax to `useState`, because it doesn't need array destruct
 It returns an object with `value` and a `setValue` method.
 
 ```jsx
-const username = useStateful("test");
+const username = useStateful('test');
 
-username.setValue("tom");
+username.setValue('tom');
 console.log(username.value);
 ```
 
@@ -113,7 +106,7 @@ const limitedNumber = useNumber(3, { upperLimit: 5, lowerLimit: 3 });
 const rotatingNumber = useNumber(0, {
   upperLimit: 5,
   lowerLimit: 0,
-  loop: true
+  loop: true,
 });
 ```
 
@@ -134,7 +127,7 @@ Options:
 ### useInput
 
 ```jsx
-const newTodo = useInput("");
+const newTodo = useInput('');
 ```
 
 ```jsx
@@ -169,11 +162,12 @@ Methods:
 - `clear`
 - `removeIndex`
 - `removeById` - if array consists of objects with some specific `id` that you pass
-all of them will be removed
-- `move` - moves item from position to position shifting other elements. 
+  all of them will be removed
+- `move` - moves item from position to position shifting other elements.
+
 ```
     So if input is [1, 2, 3, 4, 5]
-    
+
     from  | to    | expected
     3     | 0     | [4, 1, 2, 3, 5]
     -1    | 0     | [5, 1, 2, 3, 4]
@@ -184,8 +178,8 @@ all of them will be removed
 ### useMap
 
 ```jsx
-const { value, set } = useMap([["key", "value"]]);
-const { value: anotherValue, remove } = useMap(new Map([["key", "value"]]));
+const { value, set } = useMap([['key', 'value']]);
+const { value: anotherValue, remove } = useMap(new Map([['key', 'value']]));
 ```
 
 Actions:
@@ -195,6 +189,14 @@ Actions:
 - `clear`
 - `initialize` - applies tuples or map instances
 - `setValue`
+
+### useSet
+
+```jsx
+const SetProxy = useSet(new Set<number>([1, 2));
+```
+
+SetProxy is an object which has the same API as plain JS Set, but use hooks under the hood
 
 ### useSetState
 
@@ -231,25 +233,29 @@ const Counter = () => {
 
 ## Migration from v1 to v2
 
-- Migration to array based API is a bit more complex but recommended (especially if you're using ESLint rules for hooks). 
-Take a look at [this section](./README-ARRAY.md#migration-from-object-to-array-based) in array API docs.
+- Migration to array based API is a bit more complex but recommended (especially if you're using ESLint rules for hooks).
+  Take a look at [this section](./README-ARRAY.md#migration-from-object-to-array-based) in array API docs.
 - All lifecycle helpers are got removed, please replace them with `useEffect`
-`useOnMount` and `useOnUnmount` and `useLifecycleHooks`:  
-This:
+  `useOnMount` and `useOnUnmount` and `useLifecycleHooks`:  
+  This:
+
 ```javascript
-useOnMount(() => console.log("I'm mounted!"))
-useOnUnmount(() =>  console.log("I'm unmounted"))
+useOnMount(() => console.log("I'm mounted!"));
+useOnUnmount(() => console.log("I'm unmounted"));
 // OR
-useLifecycleHooks({ 
+useLifecycleHooks({
   onMount: () => console.log("I'm mounted!"),
-  onUnmount: () => console.log("I'm unmounted!") 
-})
+  onUnmount: () => console.log("I'm unmounted!"),
+});
 ```
+
 to:
+
 ```javascript
 useEffect(() => {
   console.log("I'm mounted!");
-  return () =>  console.log("I'm unmounted");
+  return () => console.log("I'm unmounted");
 }, []);
 ```
+
 - `bind` and `bindToInput` are got renamed to `valueBind` and `eventBind` respectively on `useInput` hook
