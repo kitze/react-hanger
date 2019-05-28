@@ -13,8 +13,6 @@
 # react-hanger
 [![npm version](https://badge.fury.io/js/react-hanger.svg)](https://badge.fury.io/js/react-hanger)
 
-<img width="450" src="https://i.imgur.com/JoBWJxS.png"/>
-
 Set of a helpful hooks, for different specific to some primitives types state changing helpers.
 Has two APIs:
 - [First](#Example) and original from v1 is based on object destructuring e.g. `const { value, toggle } = useBoolean(false)` (Docs below)
