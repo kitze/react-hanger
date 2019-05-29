@@ -231,8 +231,7 @@ const Counter = () => {
 
 - Migration to array based API is a bit more complex but recommended (especially if you're using ESLint rules for hooks). 
 Take a look at [this section](./README-ARRAY.md#migration-from-object-to-array-based) in array API docs.
-- All lifecycle helpers are got removed, please replace them with `useEffect`
-`useOnMount` and `useOnUnmount` and `useLifecycleHooks`:  
+- All lifecycle helpers are removed. Please replace `useOnMount`, `useOnUnmount` and `useLifecycleHooks` with `useEffect`.
 This:
 ```javascript
 useOnMount(() => console.log("I'm mounted!"))
