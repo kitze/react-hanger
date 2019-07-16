@@ -42,6 +42,7 @@ export function useArray<T = any>(initial: T[]): UseArray<T> {
     () => ({
       setValue,
       add,
+      push: add,
       move,
       clear,
       removeById,

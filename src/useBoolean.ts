@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { SetStateAction, useCallback, useMemo, useState } from 'react';
+import { SetStateAction, useMemo } from 'react';
+import useBooleanArray from './array/useBoolean';
 
 export type UseBoolean = {
   value: boolean;
@@ -10,19 +11,13 @@ export type UseBoolean = {
 };
 
 export function useBoolean(initial: boolean): UseBoolean {
-  const [value, setValue] = useState<boolean>(initial);
-  const toggle = useCallback(() => setValue(v => !v), []);
-  const setTrue = useCallback(() => setValue(true), []);
-  const setFalse = useCallback(() => setValue(false), []);
+  const [value, actions] = useBooleanArray(initial);
   return useMemo(
     () => ({
       value,
-      setValue,
-      toggle,
-      setTrue,
-      setFalse,
+      ...actions,
     }),
-    [setFalse, setTrue, toggle, value],
+    [actions, value],
   );
 }
 

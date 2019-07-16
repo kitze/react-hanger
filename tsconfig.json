@@ -21,7 +21,8 @@
     "emitDecoratorMetadata": true,
     "outDir": "lib/es6",
     "declaration": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "incremental": true
   },
   "exclude": [
     "src/**/*.js",

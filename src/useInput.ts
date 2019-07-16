@@ -3,11 +3,11 @@ import { useCallback, useMemo, useState } from 'react';
 import { UseStateful } from './useStateful';
 
 export type UseInput = UseStateful<string> & {
-  onChange: (e: React.SyntheticEvent) => void;
+  onChange: (e: React.BaseSyntheticEvent) => void;
   hasValue: boolean;
   clear: () => void;
   eventBind: {
-    onChange: (e: React.SyntheticEvent) => void;
+    onChange: (e: React.BaseSyntheticEvent) => void;
     value: string;
   };
   valueBind: {

@@ -1,4 +1,5 @@
-import { renderHook, cleanup, act } from 'react-hooks-testing-library';
+import { renderHook, act } from '@testing-library/react-hooks';
+import { cleanup } from '@testing-library/react';
 import { useStateful } from './useStateful';
 import { useNumber } from './useNumber';
 import { useArray } from './useArray';

@@ -2,7 +2,7 @@ import { default as React, SetStateAction, useCallback, useMemo, useState } from
 
 export type UseInputActions = {
   setValue: React.Dispatch<SetStateAction<string>>;
-  onChange: (e: React.SyntheticEvent) => void;
+  onChange: (e: React.BaseSyntheticEvent) => void;
   clear: () => void;
 };
 export type UseInput = [[string, boolean], UseInputActions];

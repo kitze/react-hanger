@@ -37,19 +37,20 @@
     "react-dom": "^16.8.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.11",
-    "@types/react": "^16.8.13",
+    "@types/jest": "^24.0.15",
+    "@types/react": "^16.8.23",
     "cross-env": "^5.2.0",
     "gh-pages": "^1.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-hooks-testing-library": "^0.4.0",
-    "react-testing-library": "^6.1.2",
+    "@testing-library/react": "^8.0.5",
+    "@testing-library/react-hooks": "^1.1.0",
+    "react-test-renderer": "^16.8.6",
     "rimraf": "^2.6.3",
-    "typescript": "^3.4.2",
-    "jest": "^24.5.0",
+    "typescript": "^3.5.3",
+    "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
-    "babel-eslint": "10.0.1",
+    "babel-eslint": "10.0.2",
     "@typescript-eslint/parser": "1.5.0",
     "@typescript-eslint/eslint-plugin": "1.5.0",
     "eslint-plugin-react-hooks": "1.5.1",
@@ -64,7 +65,7 @@
     "eslint-plugin-react": "7.12.4",
     "eslint-config-react-app": "3.0.8",
     "eslint-config-revolut-react": "0.0.22",
-    "prettier": "1.17.0"
+    "prettier": "1.18.2"
   },
   "favoriteScripts": [
     "test:watch"

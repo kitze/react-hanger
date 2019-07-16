@@ -1,5 +1,6 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { UseStateful } from './useStateful';
+import useMapArray from './array/useMap';
 
 export type MapOrEntries<K, V> = Map<K, V> | [K, V][];
 export type UseMap<K, V> = UseStateful<Map<K, V>> & {
@@ -10,41 +11,13 @@ export type UseMap<K, V> = UseStateful<Map<K, V>> & {
 };
 
 export function useMap<K, V>(initialState: MapOrEntries<K, V> = new Map()): UseMap<K, V> {
-  const [map, setMap] = useState(Array.isArray(initialState) ? new Map(initialState) : initialState);
-
-  const set = useCallback((key, value) => {
-    setMap(aMap => {
-      const copy = new Map(aMap);
-      return copy.set(key, value);
-    });
-  }, []);
-
-  const deleteByKey = useCallback(key => {
-    setMap(_map => {
-      const copy = new Map(_map);
-      copy.delete(key);
-      return copy;
-    });
-  }, []);
-
-  const clear = useCallback(() => {
-    setMap(() => new Map());
-  }, []);
-
-  const initialize = useCallback((mapOrTuple: MapOrEntries<K, V> = []) => {
-    setMap(() => new Map(mapOrTuple));
-  }, []);
-
+  const [map, actions] = useMapArray(initialState);
   return useMemo(
     () => ({
       value: map,
-      setValue: setMap,
-      clear,
-      set,
-      remove: deleteByKey,
-      initialize,
+      ...actions,
     }),
-    [clear, deleteByKey, initialize, map, set],
+    [actions, map],
   );
 }
 

@@ -41,7 +41,9 @@ export function useMap<K, V>(initialState: MapOrEntries<K, V> = new Map()): UseM
       setValue: setMap,
       clear,
       set,
+      // TODO: To be removed in the next major release
       remove: deleteByKey,
+      delete: deleteByKey,
       initialize,
     }),
     [clear, deleteByKey, initialize, set],
