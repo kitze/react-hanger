@@ -165,7 +165,7 @@ describe('useArray array', () => {
     const [, actions] = result.current;
     expect(result.current[0].length).toBe(0);
 
-    act(() => actions.add('test'));
+    act(() => actions.push('test'));
 
     expect(result.current[0].length).toBe(1);
   });
@@ -236,7 +236,7 @@ describe('useArray array', () => {
       const [, originalActionsReference] = result.current;
       expect(result.current[1]).toBe(originalActionsReference);
       // when
-      act(() => originalActionsReference.add(1));
+      act(() => originalActionsReference.push(1));
       // then
       expect(originalActionsReference).toBe(result.current[1]);
     });
@@ -317,14 +317,14 @@ describe('useMap array', () => {
     });
   });
 
-  describe('remove', () => {
+  describe('delete', () => {
     it('should delete existing value', () => {
       // given
       const { result } = renderHook(() => useMap<number, string>([[1, 'existing']]));
       const [, actions] = result.current;
       expect(result.current[0].get(1)).toBe('existing');
       // when
-      act(() => actions.remove(1));
+      act(() => actions.delete(1));
       // then
       expect(result.current[0].get(1)).toBeUndefined();
     });

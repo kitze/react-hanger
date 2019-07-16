@@ -135,12 +135,14 @@ describe('useSetState', () => {
 });
 
 describe('useArray', () => {
-  it('should add item', () => {
+  it('should push item', () => {
     const { result } = renderHook(() => useArray<string>([]));
-    const { add } = result.current;
+    const { push } = result.current;
     expect(result.current.value.length).toBe(0);
 
-    act(() => add('test'));
+    act(() => {
+      push('test');
+    });
 
     expect(result.current.value.length).toBe(1);
   });
@@ -208,12 +210,14 @@ describe('useArray', () => {
     it('should keep actions reference equality after value change', () => {
       // given
       const { result } = renderHook(() => useArray<any>([]));
-      const { add } = result.current;
-      expect(result.current.add).toBe(add);
+      const { push } = result.current;
+      expect(result.current.push).toBe(push);
       // when
-      act(() => add(1));
+      act(() => {
+        push(1);
+      });
       // then
-      expect(add).toBe(result.current.add);
+      expect(push).toBe(result.current.push);
     });
   });
 });
@@ -292,14 +296,14 @@ describe('useMap', () => {
     });
   });
 
-  describe('remove', () => {
+  describe('delete', () => {
     it('should delete existing value', () => {
       // given
       const { result } = renderHook(() => useMap<number, string>([[1, 'existing']]));
-      const { remove } = result.current;
+      const { delete: aDelete } = result.current;
       expect(result.current.value.get(1)).toBe('existing');
       // when
-      act(() => remove(1));
+      act(() => aDelete(1));
       // then
       expect(result.current.value.get(1)).toBeUndefined();
     });

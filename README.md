@@ -163,7 +163,10 @@ const todos = useArray([]);
 
 Methods:
 
-- `add`
+- `push` - similar to native doesn't return length tho
+- `unshift` - similar to native doesn't return length tho
+- `pop` - similar to native doesn't return element tho
+- `shift` - similar to native doesn't return element tho
 - `clear`
 - `removeIndex`
 - `removeById` - if array consists of objects with some specific `id` that you pass
@@ -189,7 +192,7 @@ const { value: anotherValue, remove } = useMap(new Map([["key", "value"]]));
 Actions:
 
 - `set`
-- `remove`
+- `delete`
 - `clear`
 - `initialize` - applies tuples or map instances
 - `setValue`

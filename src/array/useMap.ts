@@ -1,14 +1,18 @@
 import { Dispatch, SetStateAction, useCallback, useMemo, useState } from 'react';
 
 export type MapOrEntries<K, V> = Map<K, V> | [K, V][];
-export type UseMapFunctions<K, V> = {
+export type UseMapActions<K, V> = {
   setValue: Dispatch<SetStateAction<Map<K, V>>>;
   remove: (keyToRemove: K) => void;
+  delete: (keyToRemove: K) => void;
   set: (key: K, value: V) => void;
   clear: Map<K, V>['clear'];
   initialize: (pairsOrMap: MapOrEntries<K, V>) => void;
 };
-export type UseMap<K, V> = [Map<K, V>, UseMapFunctions<K, V>];
+
+export type UseMapFunctions<K, V> = UseMapActions<K, V>; // TODO: Remove on the next major release
+
+export type UseMap<K, V> = [Map<K, V>, UseMapActions<K, V>];
 
 export function useMap<K, V>(initialState: MapOrEntries<K, V> = new Map()): UseMap<K, V> {
   const [map, setMap] = useState(Array.isArray(initialState) ? new Map(initialState) : initialState);

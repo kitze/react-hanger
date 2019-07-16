@@ -104,7 +104,10 @@ const [todos, actions] = useArray([]);
 
 Actions:
 
-- `add`
+- `push`
+- `unshift`
+- `pop`
+- `shift`
 - `clear`
 - `removeIndex`
 - `removeById` - if array consists of objects with some specific `id` that you pass
@@ -130,7 +133,7 @@ const [anotherMap, anotherMapActions] = useMap(new Map([["key", "value"]]));
 Actions:
 
 - `set`
-- `remove`
+- `delete`
 - `clear`
 - `initialize` - applies tuples or map instances
 - `setValue`

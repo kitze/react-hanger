@@ -1,11 +1,8 @@
 import { useMemo } from 'react';
 import { UseStateful } from './useStateful';
-import useNumberArray from './array/useNumber';
+import useNumberArray, { UseNumberActions } from './array/useNumber';
 
-export type UseNumber = UseStateful<number> & {
-  increase: (value?: number) => void;
-  decrease: (value?: number) => void;
-};
+export type UseNumber = UseStateful<number> & UseNumberActions;
 
 export function useNumber(
   initial: number,
