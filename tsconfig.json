@@ -25,6 +25,7 @@
     "incremental": true
   },
   "exclude": [
+    "lib",
     "src/**/*.js",
     "node_modules",
     "example",
