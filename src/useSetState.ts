@@ -6,16 +6,18 @@ export type UseSetStateAction<T extends object> = React.Dispatch<SetStateAction<
 export type UseSetState<T extends object> = {
   setState: UseSetStateAction<T>;
   state: T;
+  resetState: () => void;
 };
 
 export function useSetState<T extends object>(initialValue: T): UseSetState<T> {
-  const [value, setState] = useSetStateArray(initialValue);
+  const [state, setState, resetState] = useSetStateArray(initialValue);
   return useMemo(
     () => ({
       setState,
-      state: value,
+      resetState,
+      state,
     }),
-    [setState, value],
+    [setState, resetState, state],
   );
 }
 

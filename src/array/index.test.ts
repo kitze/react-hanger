@@ -137,24 +137,49 @@ describe('useSetState array', () => {
       field3?: number;
     };
     const { result } = renderHook(() => useSetState<State>({ field: 1, field2: 2 }));
-    const [, actions] = result.current;
+    const [, setState] = result.current;
 
     expect(result.current[0]).toEqual({ field: 1, field2: 2 });
 
-    act(() => actions({ field: 2, field3: 3 }));
+    act(() => setState({ field: 2, field3: 3 }));
 
     expect(result.current[0]).toEqual({ field: 2, field2: 2, field3: 3 });
+  });
+  it('should reset state to initial value', () => {
+    type State = {
+      field: number;
+      field2: number;
+      field3?: number;
+    };
+    const { result } = renderHook(() => useSetState<State>({ field: 1, field2: 2 }));
+    const [, setState, resetState] = result.current;
+
+    expect(result.current[0]).toEqual({ field: 1, field2: 2 });
+
+    act(() => setState({ field: 2, field3: 3 }));
+
+    expect(result.current[0]).toEqual({ field: 2, field2: 2, field3: 3 });
+
+    act(() => resetState());
+
+    expect(result.current[0]).toEqual({ field: 1, field2: 2 });
   });
   describe('hooks optimizations', () => {
     it('should keep actions reference equality after value change', () => {
       // given
       const { result } = renderHook(() => useSetState({}));
-      const [, originalActionsReference] = result.current;
-      expect(result.current[1]).toBe(originalActionsReference);
+      const [, originalSetStateReference, originalResetStateReference] = result.current;
+      expect(result.current[1]).toBe(originalSetStateReference);
+      expect(result.current[2]).toBe(originalResetStateReference);
       // when
-      act(() => originalActionsReference([1]));
+      act(() => originalSetStateReference({ field: 1 }));
       // then
-      expect(originalActionsReference).toBe(result.current[1]);
+      expect(originalSetStateReference).toBe(result.current[1]);
+
+      // when
+      act(() => originalResetStateReference());
+      // then
+      expect(originalResetStateReference).toBe(result.current[2]);
     });
   });
 });

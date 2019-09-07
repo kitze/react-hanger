@@ -16,7 +16,7 @@
 Set of a helpful hooks, for different specific to some primitives types state changing helpers.
 Has two APIs:
 - [First](#Example) and original from v1 is based on object destructuring e.g. `const { value, toggle } = useBoolean(false)` (Docs below)
-- [Second API](./README-ARRAY.md) (recommended [why?](./README-ARRAY.md#migration-from-object-to-array-based)) is based on more idiomatic to React hooks API, e.g. like `useState` with array destructuring 
+- [Second API](./README-ARRAY.md) (recommended [why?](./README-ARRAY.md#migration-from-object-to-array-based)) is based on more idiomatic to React hooks API, e.g. like `useState` with array destructuring
 `const [value, actions] = useBoolean(false)` [(Docs)](./README-ARRAY.md)
 
 
@@ -81,7 +81,7 @@ import useBoolean from 'react-hanger/useBoolean' // will import only this functi
 
 ### useStateful
 
-Just an alternative syntax to `useState`, because it doesn't need array destructuring.  
+Just an alternative syntax to `useState`, because it doesn't need array destructuring.
 It returns an object with `value` and a `setValue` method.
 
 ```jsx
@@ -171,10 +171,10 @@ Methods:
 - `removeIndex`
 - `removeById` - if array consists of objects with some specific `id` that you pass
 all of them will be removed
-- `move` - moves item from position to position shifting other elements. 
+- `move` - moves item from position to position shifting other elements.
 ```
     So if input is [1, 2, 3, 4, 5]
-    
+
     from  | to    | expected
     3     | 0     | [4, 1, 2, 3, 5]
     -1    | 0     | [5, 1, 2, 3, 4]
@@ -200,13 +200,15 @@ Actions:
 ### useSetState
 
 ```jsx
-const { state, setState } = useSetState({ loading: false });
+const { state, setState, resetState } = useSetState({ loading: false });
 setState({ loading: true, data: [1, 2, 3] });
+resetState()
 ```
 
 Methods:
 
 - `setState(value)` - will merge the `value` with the current `state` (like this.setState works in React)
+- `resetState()` - will reset the current `state` to the `value` which you pass to the `useSetState` hook
 
 Properties:
 
@@ -214,8 +216,8 @@ Properties:
 
 ### usePrevious
 
-Use it to get the previous value of a prop or a state value.  
-It's from the official [React Docs](https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state).  
+Use it to get the previous value of a prop or a state value.
+It's from the official [React Docs](https://reactjs.org/docs/hooks-faq.html#how-to-get-the-previous-props-or-state).
 It might come out of the box in the future.
 
 ```jsx
@@ -232,7 +234,7 @@ const Counter = () => {
 
 ## Migration from v1 to v2
 
-- Migration to array based API is a bit more complex but recommended (especially if you're using ESLint rules for hooks). 
+- Migration to array based API is a bit more complex but recommended (especially if you're using ESLint rules for hooks).
 Take a look at [this section](./README-ARRAY.md#migration-from-object-to-array-based) in array API docs.
 - All lifecycle helpers are removed. Please replace `useOnMount`, `useOnUnmount` and `useLifecycleHooks` with `useEffect`.
 This:
@@ -240,9 +242,9 @@ This:
 useOnMount(() => console.log("I'm mounted!"))
 useOnUnmount(() =>  console.log("I'm unmounted"))
 // OR
-useLifecycleHooks({ 
+useLifecycleHooks({
   onMount: () => console.log("I'm mounted!"),
-  onUnmount: () => console.log("I'm unmounted!") 
+  onUnmount: () => console.log("I'm unmounted!")
 })
 ```
 to:
