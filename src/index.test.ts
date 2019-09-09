@@ -120,16 +120,40 @@ describe('useSetState', () => {
 
     expect(result.current.state).toEqual({ field: 2, field2: 2, field3: 3 });
   });
+  it('should reset state to initial state', () => {
+    type State = {
+      field: number;
+      field2: number;
+      field3?: number;
+    };
+    const { result } = renderHook(() => useSetState<State>({ field: 1, field2: 2 }));
+    const { setState, resetState } = result.current;
+
+    expect(result.current.state).toEqual({ field: 1, field2: 2 });
+
+    act(() => setState({ field: 2, field3: 3 }));
+
+    expect(result.current.state).toEqual({ field: 2, field2: 2, field3: 3 });
+
+    act(() => resetState());
+
+    expect(result.current.state).toEqual({ field: 1, field2: 2 });
+  });
   describe('hooks optimizations', () => {
     it('should keep actions reference equality after value change', () => {
       // given
       const { result } = renderHook(() => useSetState<{}>({}));
-      const { setState } = result.current;
+      const { setState, resetState } = result.current;
       expect(result.current.setState).toBe(setState);
       // when
       act(() => setState([1]));
       // then
       expect(setState).toBe(result.current.setState);
+
+      // when
+      act(() => resetState());
+      // then
+      expect(resetState).toBe(result.current.resetState);
     });
   });
 });
