@@ -1,6 +1,6 @@
 {
   "name": "react-hanger",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Set of a helpful hooks, for different specific to some primitives types state changing helpers",
   "author": "kitze",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "build:es6": "tsc -p tsconfig.json",
     "build:require": "tsc -p tsconfig-require.json",
     "prebuild": "rimraf lib && mkdir lib && npm run test",
-    "build": "npm run build:es6 && npm run build:require",
+    "build": "eslint ./src --ext ts,tsx --max-warnings 0 && npm run build:es6 && npm run build:require",
     "postbuild": "node copyPackageJsonAndReadme.js",
     "prerelease": "npm run build",
     "release": "npm publish lib",

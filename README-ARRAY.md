@@ -142,13 +142,14 @@ Actions:
 ## useSetState
 
 ```jsx
-const [state, setState] = useSetState({ loading: false });
+const [state, setState, resetState] = useSetState({ loading: false });
 setState({ loading: true, data: [1, 2, 3] });
 ```
 
 Actions:
 
 - `setState(value)` - will merge the `value` with the current `state` (like this.setState works in React)
+- `resetState()` - will reset the current `state` to the `value` which you pass to the `useSetState` hook
 
 Properties:
 

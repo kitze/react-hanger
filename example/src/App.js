@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useInput, useBoolean, useNumber, useArray, useSetState } from 'react-hanger';
+import { useInput, useBoolean, useNumber, useArray } from 'react-hanger';
 
 // eslint-disable-next-line react/prop-types
 const Counter = ({ counter }) => {
@@ -30,7 +30,6 @@ const App = () => {
   });
   const counter = useNumber(0);
   const todos = useArray(['hi there', 'sup', 'world']);
-  const { state, setState } = useSetState({ loading: false, data: true });
 
   return (
     <div style={{ padding: 20 }}>

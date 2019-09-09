@@ -27,3 +27,4 @@ yarn-error.log*
 /main/
 /es6/
 /lib/
+tsconfig-require.tsbuildinfo

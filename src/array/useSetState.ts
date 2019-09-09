@@ -15,6 +15,10 @@ export function useSetState<T extends object>(initialValue: T): UseSetState<T> {
     },
     [setValue],
   );
+  // Disabled on purpose to avoid new references on each render.
+  // Since initialValue will be object and new reference is
+  // guaranteed here, while values are the same, hence we can keep using old function
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const resetState = useCallback(() => setValue(initialValue), []);
 
   return [value, setState, resetState];
