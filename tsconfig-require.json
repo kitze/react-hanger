@@ -1,38 +1,8 @@
 {
+  "extends": "./tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./src/",
-    "rootDir": "src",
-    "downlevelIteration": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "commonjs",
     "target": "es2017",
-    "esModuleInterop": true,
-    "jsx": "preserve",
-    "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": false,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "strict": true,
-    "allowSyntheticDefaultImports": true,
-    "emitDecoratorMetadata": true,
-    "outDir": "lib",
-    "declaration": true,
-    "sourceMap": true,
-    "incremental": true
-  },
-  "exclude": [
-    "src/**/*.js",
-    "node_modules",
-    "example",
-    "jest",
-    "src/setupTests.ts",
-    "src/index.test.ts",
-    "src/array/index.test.ts"
-  ],
-  "include": [
-    "src"
-  ]
+    "outDir": "./lib"
+  }
 }
