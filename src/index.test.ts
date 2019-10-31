@@ -192,6 +192,18 @@ describe('useArray', () => {
     expect(result.current.value.length).toBe(1);
   });
 
+  it('should modify item by id', () => {
+    const { result } = renderHook(() => useArray([{ id: 1, foo: true }, { id: 2, foo: false }]));
+    const { modifyById } = result.current;
+    expect(result.current.value.length).toBe(2);
+
+    act(() => modifyById(2, { foo: true }));
+
+    expect(
+      result.current.value.filter((element: { id: number; foo: boolean }) => element.id === 2)[0].foo,
+    ).toBe(true);
+  });
+
   it('should clear the array', () => {
     const { result } = renderHook(() => useArray([1, 2, 3, 4, 5]));
     const { clear } = result.current;
