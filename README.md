@@ -172,7 +172,7 @@ Methods:
 - `removeById` - if array consists of objects with some specific `id` that you pass
 all of them will be removed
 - `modifyById` - if array consists of objects with some specific `id` that you pass
-the element will be modified
+these elements will be modified.
 - `move` - moves item from position to position shifting other elements.
 ```
     So if input is [1, 2, 3, 4, 5]
