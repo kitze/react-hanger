@@ -223,9 +223,10 @@ describe('useArray array', () => {
 
     act(() => actions.modifyById(2, { foo: true }));
 
-    expect(result.current[0].filter((element: { id: number; foo: boolean }) => element.id === 2)[0].foo).toBe(
-      true,
+    const modifiedElement = result.current[0].find(
+      (element: { id: number; foo: boolean }) => element.id === 2,
     );
+    expect(modifiedElement.foo).toBe(true);
   });
 
   it('should clear the array', () => {
