@@ -11,6 +11,10 @@ export type UseArrayActions<T> = {
   clear: () => void;
   move: (from: number, to: number) => void;
   removeById: (id: T extends { id: string } ? string : T extends { id: number } ? number : unknown) => void;
+  modifyById: (
+    id: T extends { id: string } ? string : T extends { id: number } ? number : unknown,
+    newValue: Partial<T>,
+  ) => void;
   removeIndex: (index: number) => void;
 };
 export type UseArray<T = any> = [T[], UseArrayActions<T>];
@@ -47,6 +51,12 @@ export function useArray<T = any>(initial: T[]): UseArray<T> {
       }),
     [],
   );
+  const modifyById = useCallback(
+    (id, newValue) =>
+      // @ts-ignore not every array that you will pass down will have object with id field.
+      setValue(arr => arr.map(v => (v.id === id ? { ...v, ...newValue } : v))),
+    [],
+  );
   const actions = useMemo(
     () => ({
       setValue,
@@ -59,6 +69,7 @@ export function useArray<T = any>(initial: T[]): UseArray<T> {
       removeIndex,
       pop,
       shift,
+      modifyById,
     }),
     [push, unshift, move, clear, removeById, removeIndex, pop, shift],
   );
