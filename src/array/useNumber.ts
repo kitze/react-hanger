@@ -29,14 +29,15 @@ export function useNumber(
         const nextValue = aValue - decreaseBy;
 
         if (lowerLimit !== undefined) {
-          if (nextValue + decreaseBy > lowerLimit) {
-            return nextValue;
+          if (nextValue < lowerLimit) {
+            if (loop && upperLimit) {
+              return upperLimit;
+            }
+
+            return lowerLimit;
           }
-          if (loop && upperLimit) {
-            return upperLimit;
-          }
-          return aValue;
         }
+
         return nextValue;
       });
     },
@@ -49,14 +50,14 @@ export function useNumber(
         const nextValue = aValue + increaseBy;
 
         if (upperLimit !== undefined) {
-          if (nextValue - increaseBy < upperLimit) {
-            return nextValue;
+          if (nextValue > upperLimit) {
+            if (loop) {
+              return initial;
+            }
+            return upperLimit;
           }
-          if (loop) {
-            return initial;
-          }
-          return aValue;
         }
+
         return nextValue;
       });
     },
