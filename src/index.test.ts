@@ -30,6 +30,15 @@ describe('useNumber', () => {
     // then
     expect(result.current.value).toBe(10);
   });
+  it('should increase value with concrete value with respect to upperLimit', () => {
+    // given
+    const { result } = renderHook(() => useNumber(5, { upperLimit: 10 }));
+    const { increase } = result.current;
+    // when
+    act(() => increase(10));
+    // then
+    expect(result.current.value).toBe(10);
+  });
   it('should increase value by default step', () => {
     // given
     const { result } = renderHook(() => useNumber(5));
@@ -38,6 +47,15 @@ describe('useNumber', () => {
     act(() => increase());
     // then
     expect(result.current.value).toBe(6);
+  });
+  it('should increase value by default step with respect to upperLimit', () => {
+    // given
+    const { result } = renderHook(() => useNumber(5, { upperLimit: 5 }));
+    const { increase } = result.current;
+    // when
+    act(() => increase());
+    // then
+    expect(result.current.value).toBe(5);
   });
   it('should increase value by predefined step', () => {
     // given
@@ -48,12 +66,30 @@ describe('useNumber', () => {
     // then
     expect(result.current.value).toBe(8);
   });
-  it('should decrease value with concrete value', () => {
+  it('should increase value by predefined step with respect to upperLimit', () => {
+    // given
+    const { result } = renderHook(() => useNumber(5, { step: 3, upperLimit: 7 }));
+    const { increase } = result.current;
+    // when
+    act(() => increase());
+    // then
+    expect(result.current.value).toBe(7);
+  });
+  it('should decrease value with concrete value with', () => {
     // given
     const { result } = renderHook(() => useNumber(5));
     const { decrease } = result.current;
     // when
     act(() => decrease(5));
+    // then
+    expect(result.current.value).toBe(0);
+  });
+  it('should decrease value with concrete value with respect to lowerLimit', () => {
+    // given
+    const { result } = renderHook(() => useNumber(5, { lowerLimit: 0 }));
+    const { decrease } = result.current;
+    // when
+    act(() => decrease(10));
     // then
     expect(result.current.value).toBe(0);
   });
@@ -66,6 +102,15 @@ describe('useNumber', () => {
     // then
     expect(result.current.value).toBe(4);
   });
+  it('should decrease value by default step with respect to lowerLimit', () => {
+    // given
+    const { result } = renderHook(() => useNumber(5, { lowerLimit: 5 }));
+    const { decrease } = result.current;
+    // when
+    act(() => decrease());
+    // then
+    expect(result.current.value).toBe(5);
+  });
   it('should decrease value by predefined step', () => {
     // given
     const { result } = renderHook(() => useNumber(5, { step: 3 }));
@@ -75,6 +120,16 @@ describe('useNumber', () => {
     // then
     expect(result.current.value).toBe(2);
   });
+  it('should decrease value by predefined step with respect to lowerLimit', () => {
+    // given
+    const { result } = renderHook(() => useNumber(5, { step: 3, lowerLimit: 3 }));
+    const { decrease } = result.current;
+    // when
+    act(() => decrease());
+    // then
+    expect(result.current.value).toBe(3);
+  });
+
   describe('hooks optimizations', () => {
     it('should keep actions reference equality after value change', () => {
       // given
@@ -202,6 +257,7 @@ describe('useArray', () => {
     const modifiedElement = result.current.value.find(
       (element: { id: number; foo: boolean }) => element.id === 2,
     );
+
     expect(modifiedElement.foo).toBe(true);
   });
 
