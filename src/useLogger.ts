@@ -7,7 +7,7 @@ export function useLogger(name: string, props: any): void {
     return () => console.log(`${name} has unmounted`);
   }, [name]);
   useEffect(() => {
-    console.log('Props updated', props);
+    console.log(`${name} Props updated`, props);
   });
 }
 
