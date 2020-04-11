@@ -1,4 +1,4 @@
-### 🙋‍♂️ Made by [@thekitze](https://twitter.com/thekitze), improved by [@rip212](https://twitter.com/rip212)
+### 🙋‍♂️ Made by [@thekitze](https://twitter.com/thekitze), improved by [@rip212](https://twitter.com/los_codes)
 
 
 ### Other projects:
