@@ -24,7 +24,7 @@ export function useNumber(
   const [value, setValue] = useState<number>(initial);
   const decrease = useCallback(
     (d?: number) => {
-      setValue(aValue => {
+      setValue((aValue) => {
         const decreaseBy = d !== undefined ? d : step;
         const nextValue = aValue - decreaseBy;
 
@@ -45,7 +45,7 @@ export function useNumber(
   );
   const increase = useCallback(
     (i?: number) => {
-      setValue(aValue => {
+      setValue((aValue) => {
         const increaseBy = i !== undefined ? i : step;
         const nextValue = aValue + increaseBy;
 

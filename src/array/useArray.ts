@@ -21,15 +21,15 @@ export type UseArray<T = any> = [T[], UseArrayActions<T>];
 
 export function useArray<T = any>(initial: T[]): UseArray<T> {
   const [value, setValue] = useState(initial);
-  const push = useCallback(a => {
-    setValue(v => [...v, ...(Array.isArray(a) ? a : [a])]);
+  const push = useCallback((a) => {
+    setValue((v) => [...v, ...(Array.isArray(a) ? a : [a])]);
   }, []);
-  const unshift = useCallback(a => setValue(v => [...(Array.isArray(a) ? a : [a]), ...v]), []);
-  const pop = useCallback(() => setValue(v => v.slice(0, -1)), []);
-  const shift = useCallback(() => setValue(v => v.slice(1)), []);
+  const unshift = useCallback((a) => setValue((v) => [...(Array.isArray(a) ? a : [a]), ...v]), []);
+  const pop = useCallback(() => setValue((v) => v.slice(0, -1)), []);
+  const shift = useCallback(() => setValue((v) => v.slice(1)), []);
   const move = useCallback(
     (from: number, to: number) =>
-      setValue(it => {
+      setValue((it) => {
         const copy = it.slice();
         copy.splice(to < 0 ? copy.length + to : to, 0, copy.splice(from, 1)[0]);
         return copy;
@@ -39,12 +39,12 @@ export function useArray<T = any>(initial: T[]): UseArray<T> {
   const clear = useCallback(() => setValue(() => []), []);
   const removeById = useCallback(
     // @ts-ignore not every array that you will pass down will have object with id field.
-    id => setValue(arr => arr.filter(v => v && v.id !== id)),
+    (id) => setValue((arr) => arr.filter((v) => v && v.id !== id)),
     [],
   );
   const removeIndex = useCallback(
-    index =>
-      setValue(v => {
+    (index) =>
+      setValue((v) => {
         const copy = v.slice();
         copy.splice(index, 1);
         return copy;
@@ -54,7 +54,7 @@ export function useArray<T = any>(initial: T[]): UseArray<T> {
   const modifyById = useCallback(
     (id, newValue) =>
       // @ts-ignore not every array that you will pass down will have object with id field.
-      setValue(arr => arr.map(v => (v.id === id ? { ...v, ...newValue } : v))),
+      setValue((arr) => arr.map((v) => (v.id === id ? { ...v, ...newValue } : v))),
     [],
   );
   const actions = useMemo(
@@ -71,7 +71,7 @@ export function useArray<T = any>(initial: T[]): UseArray<T> {
       shift,
       modifyById,
     }),
-    [push, unshift, move, clear, removeById, removeIndex, pop, shift],
+    [modifyById, push, unshift, move, clear, removeById, removeIndex, pop, shift],
   );
   return [value, actions];
 }

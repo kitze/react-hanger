@@ -10,7 +10,7 @@ export type UseInput = [[string, boolean], UseInputActions];
 export function useInput(initial: string | number | boolean = ''): UseInput {
   const stringified = initial.toString();
   const [value, setValue] = useState<string>(stringified);
-  const onChange = useCallback(e => setValue(e.target.value.toString()), []);
+  const onChange = useCallback((e) => setValue(e.target.value.toString()), []);
 
   const clear = useCallback(() => setValue(''), []);
   const hasValue = value !== undefined && value !== null && value.trim() !== '';

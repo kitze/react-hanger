@@ -31,7 +31,7 @@ export const useHovered = () => {
           onMouseLeave: () => setHovering(false),
         }
       : {
-          onClick: () => setHovering(h => !h),
+          onClick: () => setHovering((h) => !h),
         },
   };
 };
@@ -84,7 +84,7 @@ export const useGoogleAnalytics = (id: string, startLoading: boolean) => {
 };
 
 export const useFindElementCenter = (elementRef: RefObject<HTMLElement>) => {
-  const [windowSize, setWindowSize] = useState();
+  const [windowSize, setWindowSize] = useState<{ x: number; y: number }>();
   useEffect(() => {
     if (elementRef.current) {
       const { offsetTop, offsetLeft, offsetWidth, offsetHeight } = elementRef.current;
@@ -121,7 +121,7 @@ export const useMousePosition = (shouldTrack: boolean) => {
 export type TimeFormattingFunction = (date: Date) => string;
 
 export const useClock = (
-  timeFormattingFunction: TimeFormattingFunction = date => date.toLocaleDateString(),
+  timeFormattingFunction: TimeFormattingFunction = (date) => date.toLocaleDateString(),
 ) => {
   const getCurrentTime = useCallback(() => timeFormattingFunction(new Date()), [timeFormattingFunction]);
   const [time, setTime] = useState(getCurrentTime());
@@ -156,7 +156,7 @@ export const useLoadScript = ({ startLoading, src }: UseScript) => {
       const script = document.createElement('script');
       script.src = src;
       script.onload = () => setState({ ready: true, error: null });
-      script.onerror = error => setState({ ready: false, error });
+      script.onerror = (error) => setState({ ready: false, error });
       document.body.appendChild(script);
     }
   }, [src, startLoading]);

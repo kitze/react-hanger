@@ -1,15 +1,13 @@
 {
   "extends": [
-    "revolut-react"
+    "react-app",
+    "prettier"
+  ],
+  "plugins": [
+    "prettier"
   ],
   "rules": {
     "import/no-named-default": 0,
-    "prettier/prettier": [
-      1,
-      {},
-      {
-        "usePrettierrc": true
-      }
-    ]
+    "prettier/prettier": "warn"
   }
 }

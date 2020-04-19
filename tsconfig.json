@@ -19,7 +19,7 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": true,
-    "outDir": "./lib/es6",
+    "outDir": "./lib/esm",
     "declaration": true,
     "sourceMap": true
   },

@@ -18,14 +18,14 @@ export function useMap<K, V>(initialState: MapOrEntries<K, V> = new Map()): UseM
   const [map, setMap] = useState(Array.isArray(initialState) ? new Map(initialState) : initialState);
 
   const set = useCallback((key, value) => {
-    setMap(aMap => {
+    setMap((aMap) => {
       const copy = new Map(aMap);
       return copy.set(key, value);
     });
   }, []);
 
-  const deleteByKey = useCallback(key => {
-    setMap(_map => {
+  const deleteByKey = useCallback((key) => {
+    setMap((_map) => {
       const copy = new Map(_map);
       copy.delete(key);
       return copy;

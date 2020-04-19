@@ -19,7 +19,7 @@ export type UseInput = UseStateful<string> & {
 export function useInput(initial: string | number | boolean = ''): UseInput {
   const stringified = initial.toString();
   const [value, setValue] = useState<string>(stringified);
-  const onChange = useCallback(e => setValue(e.target.value), []);
+  const onChange = useCallback((e) => setValue(e.target.value), []);
 
   const clear = useCallback(() => setValue(''), []);
   return useMemo(

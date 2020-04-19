@@ -248,7 +248,12 @@ describe('useArray', () => {
   });
 
   it('should modify item by id', () => {
-    const { result } = renderHook(() => useArray([{ id: 1, foo: true }, { id: 2, foo: false }]));
+    const { result } = renderHook(() =>
+      useArray([
+        { id: 1, foo: true },
+        { id: 2, foo: false },
+      ]),
+    );
     const { modifyById } = result.current;
     expect(result.current.value.length).toBe(2);
 
@@ -258,7 +263,7 @@ describe('useArray', () => {
       (element: { id: number; foo: boolean }) => element.id === 2,
     );
 
-    expect(modifiedElement.foo).toBe(true);
+    expect(modifiedElement?.foo).toBe(true);
   });
 
   it('should clear the array', () => {
@@ -278,7 +283,7 @@ describe('useArray', () => {
 
     expect(result.current.value.length).toBe(5);
 
-    act(() => setValue(it => [...it, 6]));
+    act(() => setValue((it) => [...it, 6]));
 
     expect(result.current.value.length).toBe(6);
     expect(result.current.value[5]).toBe(6);

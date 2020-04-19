@@ -93,7 +93,7 @@ describe('useNumber array', () => {
   });
   it('should decrease value by default step with respect to lowerLimit', () => {
     // given
-    const { result } = renderHook(() => useNumber(5, { lowerLimit: 5}));
+    const { result } = renderHook(() => useNumber(5, { lowerLimit: 5 }));
     const [, actions] = result.current;
     // when
     act(() => actions.decrease());
@@ -272,7 +272,12 @@ describe('useArray array', () => {
   });
 
   it('should modify item by id', () => {
-    const { result } = renderHook(() => useArray([{ id: 1, foo: true }, { id: 2, foo: false }]));
+    const { result } = renderHook(() =>
+      useArray([
+        { id: 1, foo: true },
+        { id: 2, foo: false },
+      ]),
+    );
     const [, actions] = result.current;
     expect(result.current[0].length).toBe(2);
 
@@ -282,7 +287,7 @@ describe('useArray array', () => {
       (element: { id: number; foo: boolean }) => element.id === 2,
     );
 
-    expect(modifiedElement.foo).toBe(true);
+    expect(modifiedElement?.foo).toBe(true);
   });
 
   it('should clear the array', () => {
@@ -302,7 +307,7 @@ describe('useArray array', () => {
 
     expect(result.current[0].length).toBe(5);
 
-    act(() => actions.setValue(it => [...it, 6]));
+    act(() => actions.setValue((it) => [...it, 6]));
 
     expect(result.current[0].length).toBe(6);
     expect(result.current[0][5]).toBe(6);
