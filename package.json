@@ -20,13 +20,13 @@
     "lint": "eslint ./src --ext ts,tsx --max-warnings 0",
     "lint:fix": "yarn lint --fix",
     "test": "jest src",
-    "test:watch": "npm run test -- --watch",
+    "test:watch": "yarn test -- --watch",
     "build:esm": "tsc",
     "build:cjs": "tsc -p tsconfig-require.json",
     "clean": "rimraf lib",
-    "build": "npm run build:esm && npm run build:cjs",
+    "build": "yarn build:esm && npm run build:cjs",
     "postbuild": "node copyPackageJsonAndReadme.js",
-    "prepublish": "npm run clean && npm run build",
+    "prepublish": "yarn clean && yarn build",
     "release": "np --contents lib"
   },
   "peerDependencies": {
