@@ -68,7 +68,7 @@ const App = () => {
 
 ### Example
 
-[Open in CodeSandbox](https://codesandbox.io/s/44m70xm70)
+[![Edit react-hanger example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-hanger-example-ize89?fontsize=14&hidenavigation=1&theme=dark)
 
 ## API reference (object destructuring)
 
