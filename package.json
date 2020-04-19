@@ -1,6 +1,6 @@
 {
   "name": "react-hanger",
-  "version": "2.1.3",
+  "version": "2.2.0",
   "description": "Set of a helpful hooks, for different specific to some primitives types state changing helpers",
   "author": "kitze",
   "license": "MIT",
