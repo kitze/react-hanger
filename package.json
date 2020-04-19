@@ -27,7 +27,7 @@
     "build": "npm run build:esm && npm run build:cjs",
     "postbuild": "node copyPackageJsonAndReadme.js",
     "prepublish": "npm run clean && npm run build",
-    "release": "np  --contents lib"
+    "release": "np --contents lib"
   },
   "peerDependencies": {
     "react": ">16.8.0",
