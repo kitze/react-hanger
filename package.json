@@ -26,7 +26,7 @@
     "clean": "rimraf lib",
     "build": "yarn build:esm && npm run build:cjs",
     "postbuild": "node copyPackageJsonAndReadme.js",
-    "prepublish": "yarn clean && yarn build",
+    "postinstall": "yarn clean && yarn build",
     "release": "np --contents lib"
   },
   "peerDependencies": {
