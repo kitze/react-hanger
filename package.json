@@ -27,7 +27,7 @@
     "build": "yarn build:esm && npm run build:cjs",
     "postbuild": "node copyPackageJsonAndReadme.js",
     "postversion": "yarn clean && yarn build",
-    "release": "np --contents lib"
+    "release": "np --contents lib --no-yarn"
   },
   "peerDependencies": {
     "react": ">16.8.0",
