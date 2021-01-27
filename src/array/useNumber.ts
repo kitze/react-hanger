@@ -51,8 +51,8 @@ export function useNumber(
 
         if (upperLimit !== undefined) {
           if (nextValue > upperLimit) {
-            if (loop) {
-              return initial;
+            if (loop && lowerLimit) {
+              return lowerLimit;
             }
             return upperLimit;
           }
@@ -61,7 +61,7 @@ export function useNumber(
         return nextValue;
       });
     },
-    [initial, loop, step, upperLimit],
+    [loop, step, upperLimit, lowerLimit],
   );
   const actions = useMemo(
     () => ({
