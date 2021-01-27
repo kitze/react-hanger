@@ -64,6 +64,21 @@ describe('useNumber array', () => {
     // then
     expect(result.current[0]).toBe(7);
   });
+  it('should return lowerLimit value if nextValue is greater than upperLimit and loop', () => {
+    // given
+    const { result } = renderHook(() =>
+      useNumber(5, {
+        upperLimit: 5,
+        lowerLimit: 1,
+        loop: true,
+      }),
+    );
+    const [, actions] = result.current;
+    // when
+    act(() => actions.increase());
+    // then
+    expect(result.current[0]).toBe(1);
+  });
   it('should decrease value with concrete value', () => {
     // given
     const { result } = renderHook(() => useNumber(5));
