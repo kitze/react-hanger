@@ -16,6 +16,17 @@
         "test",
         "code"
       ]
+    },
+    {
+      "login": "praneetrohida",
+      "name": "Praneet Rohida",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23721710?v=4",
+      "profile": "https://praneet.dev",
+      "contributions": [
+        "infra",
+        "test",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
