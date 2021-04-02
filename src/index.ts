@@ -7,3 +7,4 @@ export { useNumber, UseNumber } from './useNumber';
 export { usePrevious } from './usePrevious';
 export { useSetState, UseSetState, UseSetStateAction } from './useSetState';
 export { useStateful, UseStateful } from './useStateful';
+export { usePageLoad } from './usePageLoad';
