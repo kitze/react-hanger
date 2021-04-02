@@ -36,13 +36,6 @@ export const useHovered = () => {
   };
 };
 
-export const useToggleBodyClass = (bool: boolean, [on, off]: [string, string]) => {
-  useEffect(() => {
-    document.body.classList.remove(bool ? off : on);
-    document.body.classList.add(bool ? on : off);
-  });
-};
-
 export const usePose = (initial: string, poses: object = {}) => {
   const [pose, setPose] = useState(initial);
   return { pose, setPose, poses };

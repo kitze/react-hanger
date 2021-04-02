@@ -14,3 +14,4 @@ export * from './useGoogleAnalytics';
 export * from './useWindowSize';
 export * from './useDelay';
 export * from './usePersist';
+export * from './useToggleBodyClass';
