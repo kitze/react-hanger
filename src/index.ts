@@ -12,3 +12,4 @@ export * from './useScript';
 export * from './useDocumentReady';
 export * from './useGoogleAnalytics';
 export * from './useWindowSize';
+export * from './useDelay';
