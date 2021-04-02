@@ -1,4 +1,5 @@
 # react-hanger
+
 [![npm version](https://badge.fury.io/js/react-hanger.svg)](https://badge.fury.io/js/react-hanger)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
@@ -37,10 +38,10 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 
 Has two APIs:
+
 - [First](#Example) and original from v1 is based on object destructuring e.g. `const { value, toggle } = useBoolean(false)` (Docs below)
 - [Second API](./README-ARRAY.md) (recommended [why?](./README-ARRAY.md#migration-from-object-to-array-based)) is based on more idiomatic to React hooks API, e.g. like `useState` with array destructuring
-`const [value, actions] = useBoolean(false)` [(Docs)](./README-ARRAY.md)
-
+  `const [value, actions] = useBoolean(false)` [(Docs)](./README-ARRAY.md)
 
 ## Install
 
@@ -51,28 +52,21 @@ yarn add react-hanger
 ## Usage
 
 ```jsx
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import {
-  useInput,
-  useBoolean,
-  useNumber,
-  useArray,
-  useOnMount,
-  useOnUnmount
-} from "react-hanger";
+import { useInput, useBoolean, useNumber, useArray, useOnMount, useOnUnmount } from 'react-hanger';
 
 const App = () => {
-  const newTodo = useInput("");
+  const newTodo = useInput('');
   const showCounter = useBoolean(true);
   const limitedNumber = useNumber(3, { lowerLimit: 0, upperLimit: 5 });
   const counter = useNumber(0);
-  const todos = useArray(["hi there", "sup", "world"]);
+  const todos = useArray(['hi there', 'sup', 'world']);
 
   const rotatingNumber = useNumber(0, {
     lowerLimit: 0,
     upperLimit: 4,
-    loop: true
+    loop: true,
   });
 
   return (
@@ -107,9 +101,9 @@ Just an alternative syntax to `useState`, because it doesn't need array destruct
 It returns an object with `value` and a `setValue` method.
 
 ```jsx
-const username = useStateful("test");
+const username = useStateful('test');
 
-username.setValue("tom");
+username.setValue('tom');
 console.log(username.value);
 ```
 
@@ -133,7 +127,7 @@ const limitedNumber = useNumber(3, { upperLimit: 5, lowerLimit: 3 });
 const rotatingNumber = useNumber(0, {
   upperLimit: 5,
   lowerLimit: 0,
-  loop: true
+  loop: true,
 });
 ```
 
@@ -154,7 +148,7 @@ Options:
 ### useInput
 
 ```jsx
-const newTodo = useInput("");
+const newTodo = useInput('');
 ```
 
 ```jsx
@@ -192,10 +186,11 @@ Methods:
 - `clear`
 - `removeIndex`
 - `removeById` - if array consists of objects with some specific `id` that you pass
-all of them will be removed
+  all of them will be removed
 - `modifyById` - if array consists of objects with some specific `id` that you pass
-these elements will be modified.
+  these elements will be modified.
 - `move` - moves item from position to position shifting other elements.
+
 ```
     So if input is [1, 2, 3, 4, 5]
 
@@ -209,8 +204,8 @@ these elements will be modified.
 ### useMap
 
 ```jsx
-const { value, set } = useMap([["key", "value"]]);
-const { value: anotherValue, remove } = useMap(new Map([["key", "value"]]));
+const { value, set } = useMap([['key', 'value']]);
+const { value: anotherValue, remove } = useMap(new Map([['key', 'value']]));
 ```
 
 Actions:
@@ -226,7 +221,7 @@ Actions:
 ```jsx
 const { state, setState, resetState } = useSetState({ loading: false });
 setState({ loading: true, data: [1, 2, 3] });
-resetState()
+resetState();
 ```
 
 Methods:
@@ -255,3 +250,124 @@ const Counter = () => {
   );
 };
 ```
+
+### usePageLoad
+
+```jsx
+const isPageLoaded = usePageLoad();
+```
+
+### useScript
+
+```jsx
+const { ready, error } = useScript({
+  src: 'https://example.com/script.js',
+  startLoading: true,
+  delay: 100,
+  onReady: () => {
+    console.log('Ready');
+  },
+  onError: (error) => {
+    console.log('Error loading script ', error);
+  },
+});
+```
+
+### useDocumentReady
+
+```jsx
+const isDocumentReady = useDocumentReady();
+```
+
+### useGoogleAnalytics
+
+```jsx
+useGoogleAnalytics({
+  id: googleAnalyticsId,
+  startLoading: true,
+  delay: 500,
+});
+```
+
+### useWindowSize
+
+```jsx
+const { width, height } = useWindowSize();
+```
+
+### useDelay
+
+```jsx
+const done = useDelay(1000);
+```
+
+### usePersist
+
+```jsx
+const tokenValue = usePersist('auth-token', 'value');
+```
+
+### useToggleBodyClass
+
+```jsx
+useToggleBodyClass(true, 'dark-mode');
+```
+
+### useOnClick
+
+```jsx
+useOnClick((event) => {
+  console.log('Click event fired: ', event);
+});
+```
+
+### useOnClickOutside
+
+```jsx
+// Pass ref to the element
+const containerRef = useOnClickOutside(() => {
+  console.log('Clicked outside container');
+});
+```
+
+### useFocus
+
+```jsx
+// pass ref to the element
+// call focusElement to focus the element
+const [elementRef, focusElement] = useFocus();
+```
+
+### useImage
+
+```jsx
+const { imageVisible, bindToImage } = useImage(src, onLoad, onError);
+```
+
+## Migration from v1 to v2
+
+- Migration to array based API is a bit more complex but recommended (especially if you're using ESLint rules for hooks).
+  Take a look at [this section](./README-ARRAY.md#migration-from-object-to-array-based) in array API docs.
+- All lifecycle helpers are removed. Please replace `useOnMount`, `useOnUnmount` and `useLifecycleHooks` with `useEffect`.
+  This:
+
+```javascript
+useOnMount(() => console.log("I'm mounted!"));
+useOnUnmount(() => console.log("I'm unmounted"));
+// OR
+useLifecycleHooks({
+  onMount: () => console.log("I'm mounted!"),
+  onUnmount: () => console.log("I'm unmounted!"),
+});
+```
+
+to:
+
+```javascript
+useEffect(() => {
+  console.log("I'm mounted!");
+  return () => console.log("I'm unmounted");
+}, []);
+```
+
+- `bind` and `bindToInput` are got renamed to `valueBind` and `eventBind` respectively on `useInput` hook
