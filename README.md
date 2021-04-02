@@ -1,10 +1,10 @@
 # react-hanger
 [![npm version](https://badge.fury.io/js/react-hanger.svg)](https://badge.fury.io/js/react-hanger)
-Set of a helpful hooks, for different specific to some primitives types state changing helpers.
-
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+Set of a helpful hooks, for different specific to some primitives types state changing helpers.
 
 ## Contributors ✨
 
