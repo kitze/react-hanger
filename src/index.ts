@@ -9,3 +9,4 @@ export { useSetState, UseSetState, UseSetStateAction } from './useSetState';
 export { useStateful, UseStateful } from './useStateful';
 export * from './usePageLoad';
 export * from './useScript';
+export * from './useDocumentReady';
