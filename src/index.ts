@@ -11,3 +11,4 @@ export * from './usePageLoad';
 export * from './useScript';
 export * from './useDocumentReady';
 export * from './useGoogleAnalytics';
+export * from './useWindowSize';
