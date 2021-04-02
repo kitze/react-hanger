@@ -18,3 +18,4 @@ export * from './useToggleBodyClass';
 export * from './useOnClick';
 export * from './useClickOutside';
 export * from './useFocus';
+export * from './useImage';
