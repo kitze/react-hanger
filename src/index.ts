@@ -10,3 +10,4 @@ export { useStateful, UseStateful } from './useStateful';
 export * from './usePageLoad';
 export * from './useScript';
 export * from './useDocumentReady';
+export * from './useGoogleAnalytics';
