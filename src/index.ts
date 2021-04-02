@@ -13,3 +13,4 @@ export * from './useDocumentReady';
 export * from './useGoogleAnalytics';
 export * from './useWindowSize';
 export * from './useDelay';
+export * from './usePersist';
