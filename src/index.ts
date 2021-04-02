@@ -15,3 +15,5 @@ export * from './useWindowSize';
 export * from './useDelay';
 export * from './usePersist';
 export * from './useToggleBodyClass';
+export * from './useOnClick';
+export * from './useClickOutside';
