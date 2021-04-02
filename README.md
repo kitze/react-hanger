@@ -1,7 +1,31 @@
+# react-hanger
+[![npm version](https://badge.fury.io/js/react-hanger.svg)](https://badge.fury.io/js/react-hanger)
+Set of a helpful hooks, for different specific to some primitives types state changing helpers.
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="http://liveflow.io"><img src="https://avatars.githubusercontent.com/u/3940079?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andrey Los</b></sub></a><br /><a href="#ideas-RIP21" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-RIP21" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/kitze/react-hanger/commits?author=RIP21" title="Tests">⚠️</a> <a href="https://github.com/kitze/react-hanger/commits?author=RIP21" title="Code">💻</a></td>
+    <td align="center"><a href="https://praneet.dev"><img src="https://avatars.githubusercontent.com/u/23721710?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Praneet Rohida</b></sub></a><br /><a href="#infra-praneetrohida" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/kitze/react-hanger/commits?author=praneetrohida" title="Tests">⚠️</a> <a href="https://github.com/kitze/react-hanger/commits?author=praneetrohida" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
 ### Check out:
 
@@ -11,10 +35,7 @@
 
 ---
 
-# react-hanger
-[![npm version](https://badge.fury.io/js/react-hanger.svg)](https://badge.fury.io/js/react-hanger)
 
-Set of a helpful hooks, for different specific to some primitives types state changing helpers.
 Has two APIs:
 - [First](#Example) and original from v1 is based on object destructuring e.g. `const { value, toggle } = useBoolean(false)` (Docs below)
 - [Second API](./README-ARRAY.md) (recommended [why?](./README-ARRAY.md#migration-from-object-to-array-based)) is based on more idiomatic to React hooks API, e.g. like `useState` with array destructuring
@@ -234,24 +255,3 @@ const Counter = () => {
   );
 };
 ```
-
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tr>
-    <td align="center"><a href="http://liveflow.io"><img src="https://avatars.githubusercontent.com/u/3940079?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andrey Los</b></sub></a><br /><a href="#ideas-RIP21" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-RIP21" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/kitze/react-hanger/commits?author=RIP21" title="Tests">⚠️</a> <a href="https://github.com/kitze/react-hanger/commits?author=RIP21" title="Code">💻</a></td>
-    <td align="center"><a href="https://praneet.dev"><img src="https://avatars.githubusercontent.com/u/23721710?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Praneet Rohida</b></sub></a><br /><a href="#infra-praneetrohida" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="https://github.com/kitze/react-hanger/commits?author=praneetrohida" title="Tests">⚠️</a> <a href="https://github.com/kitze/react-hanger/commits?author=praneetrohida" title="Code">💻</a></td>
-  </tr>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
