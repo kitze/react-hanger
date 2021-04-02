@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "RIP21",
+      "name": "Andrey Los",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3940079?v=4",
+      "profile": "http://liveflow.io",
+      "contributions": [
+        "ideas",
+        "infra",
+        "test",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "react-hanger",
+  "projectOwner": "kitze",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
