@@ -17,3 +17,4 @@ export * from './usePersist';
 export * from './useToggleBodyClass';
 export * from './useOnClick';
 export * from './useClickOutside';
+export * from './useFocus';
