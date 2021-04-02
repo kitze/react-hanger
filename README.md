@@ -1,15 +1,13 @@
-### 🙋‍♂️ Made by [@thekitze](https://twitter.com/thekitze), improved by [@rip212](https://twitter.com/rip212)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 
-### Other projects:
+### Check out:
 
-- 🏫 [React Academy](https://reactacademy.io) - Interactive React and GraphQL workshops
-- 💌 [Twizzy](https://twizzy.app) - A standalone app for Twitter DM
-- 💻 [Sizzy](https://sizzy.co) - A tool for testing responsive design on multiple devices at once
-- 🤖 [JSUI](https://github.com/kitze/JSUI) - A powerful UI toolkit for managing JavaScript apps
+- 💻 [Sizzy](https://sizzy.co) - The Browser For Developers
+- 🔮 [Fungarzione](https://fungarzione.co) - Keep your users in the loop (Changelogs, Roadmap, Issues)
+- 💌 [Twizzle](https://twizzle.app) - A standalone app for Twitter DM
 
 ---
 
@@ -236,30 +234,6 @@ const Counter = () => {
   );
 };
 ```
-
-## Migration from v1 to v2
-
-- Migration to array based API is a bit more complex but recommended (especially if you're using ESLint rules for hooks).
-Take a look at [this section](./README-ARRAY.md#migration-from-object-to-array-based) in array API docs.
-- All lifecycle helpers are removed. Please replace `useOnMount`, `useOnUnmount` and `useLifecycleHooks` with `useEffect`.
-This:
-```javascript
-useOnMount(() => console.log("I'm mounted!"))
-useOnUnmount(() =>  console.log("I'm unmounted"))
-// OR
-useLifecycleHooks({
-  onMount: () => console.log("I'm mounted!"),
-  onUnmount: () => console.log("I'm unmounted!")
-})
-```
-to:
-```javascript
-useEffect(() => {
-  console.log("I'm mounted!");
-  return () =>  console.log("I'm unmounted");
-}, []);
-```
-- `bind` and `bindToInput` are got renamed to `valueBind` and `eventBind` respectively on `useInput` hook
 
 ## Contributors ✨
 
