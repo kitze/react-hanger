@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useCallback, useRef } from 'react';
 import { useOnClick } from 'useOnClick';
 
 export type ClickOutsideOptions = {
@@ -24,12 +24,15 @@ const checkOptions = (event: MouseEvent, options?: ClickOutsideOptions) => {
 export const useOnClickOutside = (fn: () => void, options?: ClickOutsideOptions) => {
   const elementRef = useRef<HTMLElement>(null);
 
-  const handleClick = (event: MouseEvent) => {
-    if (!elementRef?.current?.contains(event.target as Node) && checkOptions(event, options)) {
-      // clicked outside the ref
-      fn();
-    }
-  };
+  const handleClick = useCallback(
+    (event: MouseEvent) => {
+      if (!elementRef?.current?.contains(event.target as Node) && checkOptions(event, options)) {
+        // clicked outside the ref
+        fn();
+      }
+    },
+    [fn, options],
+  );
 
   useOnClick(handleClick);
 
