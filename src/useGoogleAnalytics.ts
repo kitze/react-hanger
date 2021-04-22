@@ -34,5 +34,5 @@ export const useGoogleAnalytics = ({ id, startLoading, delay = 0 }: UseGoogleAna
         });
       }, delay);
     }
-  }, [startLoading]);
+  }, [delay, id, startLoading]);
 };

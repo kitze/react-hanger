@@ -2,11 +2,11 @@ import useBoolean from 'useBoolean';
 import { useEffect } from 'react';
 
 export const useDocumentReady = () => {
-  const ready = useBoolean(false);
+  const { setTrue, value } = useBoolean(false);
   useEffect(() => {
     document.addEventListener('DOMContentLoaded', () => {
-      ready.setTrue();
+      setTrue();
     });
-  }, []);
-  return ready.value || (typeof document !== 'undefined' && document.readyState === 'complete');
+  }, [setTrue]);
+  return value || (typeof document !== 'undefined' && document.readyState === 'complete');
 };

@@ -1,21 +1,16 @@
 import { useEffect, useState } from 'react';
 
-const usePersist = <T>(key: string, data: T): T => {
+export const usePersist = <T>(key: string, data: T): T => {
   const storageKey = `persist-cache-${key}`;
   const storageValue = localStorage.getItem(storageKey);
   const persistedValue = JSON.parse(storageValue ?? '{}');
   const [state, setState] = useState<T>(storageValue ? persistedValue : data);
-  const updateState = (val: T) => {
-    setState(val);
-    localStorage.setItem(storageKey, JSON.stringify(val));
-  };
 
   useEffect(() => {
     if (data) {
-      updateState(data);
+      setState(data);
+      localStorage.setItem(storageKey, JSON.stringify(data));
     }
-  }, [data]);
+  }, [data, storageKey]);
   return state;
 };
-
-export default usePersist;

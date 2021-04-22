@@ -6,24 +6,24 @@ export const useImage = (
   onLoad?: (e: SyntheticEvent<HTMLImageElement, Event>) => void,
   onError?: (e: string | SyntheticEvent<HTMLImageElement, Event>) => void,
 ) => {
-  const showImage = useBoolean(!!src);
+  const { setTrue, setFalse, value } = useBoolean(!!src);
 
   useEffect(() => {
     if (!src) {
-      showImage.setFalse();
+      setFalse();
     }
-  }, [src]);
+  }, [setFalse, src]);
 
   return {
-    imageVisible: showImage.value,
+    imageVisible: value,
     bindToImage: {
-      hidden: !showImage.value,
+      hidden: !value,
       onLoad(e: SyntheticEvent<HTMLImageElement, Event>) {
-        showImage.setTrue();
+        setTrue();
         onLoad && onLoad(e);
       },
       onError(e: string | SyntheticEvent<HTMLImageElement, Event>) {
-        showImage.setTrue();
+        setTrue();
         onError && onError(e);
       },
       src,

@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import useBoolean from 'useBoolean';
 
 export const usePageLoad = () => {
-  const loaded = useBoolean(false);
+  const { value, setTrue } = useBoolean(false);
   useEffect(() => {
-    window.onload = () => loaded.setTrue();
-  }, []);
-  return loaded.value;
+    window.onload = () => setTrue();
+  }, [setTrue]);
+  return value;
 };

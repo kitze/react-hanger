@@ -6,6 +6,6 @@ export const useDelay = (delay: number = 0) => {
     setTimeout(() => {
       setDone(true);
     }, delay);
-  }, []);
+  }, [delay]);
   return done;
 };

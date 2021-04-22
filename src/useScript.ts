@@ -22,25 +22,23 @@ export const useScript = ({ startLoading, onReady, onError, src, delay = 0 }: Us
   });
 
   useEffect(() => {
-    if (startLoading && isLoading.current === false) {
+    if (startLoading && !isLoading.current) {
       setTimeout(() => {
         const script = document.createElement('script');
         script.src = src;
         script.onload = () => {
           setState({ ready: true, error: null });
-          if (onReady) {
-            onReady();
-          }
+          onReady?.();
         };
         script.onerror = (error) => {
           setState({ ready: false, error });
-          onError && onError(error);
+          onError?.(error);
         };
         document.body.appendChild(script);
         isLoading.current = true;
       }, delay);
     }
-  }, [startLoading, isLoading.current]);
+  }, [startLoading, delay, src, onReady, onError]);
 
   return state;
 };
