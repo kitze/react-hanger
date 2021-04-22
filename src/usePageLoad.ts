@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import useBoolean from 'useBoolean';
+import useBoolean from './useBoolean';
 
 export const usePageLoad = () => {
   const { value, setTrue } = useBoolean(false);

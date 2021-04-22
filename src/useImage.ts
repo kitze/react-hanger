@@ -1,5 +1,5 @@
 import { SyntheticEvent, useEffect } from 'react';
-import useBoolean from 'useBoolean';
+import useBoolean from './useBoolean';
 
 export const useImage = (
   src: string | undefined,

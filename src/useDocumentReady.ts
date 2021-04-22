@@ -1,4 +1,4 @@
-import useBoolean from 'useBoolean';
+import useBoolean from './useBoolean';
 import { useEffect } from 'react';
 
 export const useDocumentReady = () => {
