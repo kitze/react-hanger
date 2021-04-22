@@ -216,6 +216,12 @@ Actions:
 - `initialize` - applies tuples or map instances
 - `setValue`
 
+### useSet
+
+```jsx
+const set = useSet(new Set<number>([1, 2]));
+```
+
 ### useSetState
 
 ```jsx

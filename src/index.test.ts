@@ -7,6 +7,7 @@ import { useBoolean } from './useBoolean';
 import { useInput } from './useInput';
 import { useSetState } from './useSetState';
 import { useMap } from './useMap';
+import { useSet } from './useSet';
 
 afterEach(cleanup);
 describe('useStateful', () => {
@@ -366,6 +367,33 @@ describe('useBoolean', () => {
       act(() => setFalse());
       // then
       expect(setFalse).toBe(result.current.setFalse);
+    });
+  });
+});
+
+describe('useSet', () => {
+  const initial = new Set([1, 2, 3]);
+
+  describe('hooks optimizations', () => {
+    it('should change value reference equality after change', () => {
+      // given
+      const { result } = renderHook(() => useSet<number>());
+      const value = result.current;
+      // when
+      act(() => value.setValue(initial));
+      // then
+      expect(value).not.toBe(result.current);
+    });
+
+    it('should keep actions reference equality after value change', () => {
+      // given
+      const { result } = renderHook(() => useSet<number>());
+      const { setValue } = result.current;
+      expect(result.current.setValue).toBe(setValue);
+      // when
+      act(() => setValue(new Set([1, 1])));
+      // then
+      expect(setValue).toBe(result.current.setValue);
     });
   });
 });

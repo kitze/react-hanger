@@ -66,7 +66,7 @@ const [[newTodo], actions] = useInput("");
 ```jsx
 <input value={newTodo} onChange={actions.onChange} />
 ```
-Actions:
+UseSetActions:
 
 - `clear`
 - `onChange` - default native event.target.value handler
@@ -91,7 +91,7 @@ const [[newTodo], actions, { nativeBind, valueBind }] = useBindToInput(useInput(
 <Slider {...valueBind} />
 ```
 
-Actions:
+UseSetActions:
 
 - `nativeBind` - binds the `value` and `onChange` props to an input that has `e.target.value`
 - `valueBind` - binds the `value` and `onChange` props to an input that's using only `value` in `onChange` (like most external components)
@@ -102,7 +102,7 @@ Actions:
 const [todos, actions] = useArray([]);
 ```
 
-Actions:
+UseSetActions:
 
 - `push`
 - `unshift`
@@ -139,7 +139,21 @@ Actions:
 - `clear`
 - `initialize` - applies tuples or map instances
 - `setValue`
- 
+
+### useSet
+
+```jsx
+const [ value, actions ] = useSet(new Set<number>([1, 2]))
+```
+
+`value` - a Set with only non mutating methods of a plain JS Set
+
+Actions:
+
+- `setValue`
+- `add`
+- `remove`
+- `clear`
 
 ## useSetState
 
