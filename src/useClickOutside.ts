@@ -1,5 +1,5 @@
 import { useCallback, useRef } from 'react';
-import { useOnClick } from 'useOnClick';
+import { useOnClick } from './useOnClick';
 
 export type ClickOutsideOptions = {
   blacklistClassNames?: string[];
