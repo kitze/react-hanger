@@ -31,7 +31,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 ### Check out:
 
 - 💻 [Sizzy](https://sizzy.co) - The Browser For Developers
-- 🔮 [Fungarzione](https://fungarzione.co) - Keep your users in the loop (Changelogs, Roadmap, Issues)
+- 🔮 [Fungarzione](https://fungarzione.com) - Keep your users in the loop (Changelogs, Roadmap, Issues)
 - 💌 [Twizzle](https://twizzle.app) - A standalone app for Twitter DM
 
 ---
