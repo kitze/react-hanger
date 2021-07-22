@@ -8,6 +8,7 @@ export { useGoogleAnalytics, UseGoogleAnalyticsProps } from './useGoogleAnalytic
 export { useImage } from './useImage';
 export { useInput, UseInput } from './useInput';
 export { useLogger } from './useLogger';
+export { useClickAway } from './useClickAway';
 export { useMap, UseMap, MapOrEntries } from './useMap';
 export { useNumber, UseNumber } from './useNumber';
 export { useOnClick } from './useOnClick';
