@@ -132,7 +132,7 @@ describe('useNumber', () => {
   });
 
   describe('loop mode', () => {
-    it('should go to lowerLimit value after reaching upperLimit', () => {
+    it('should go to lowerLimit value after increase reaching upperLimit', () => {
       // given
       const { result } = renderHook(() => useNumber(4, { loop: true, upperLimit: 5, lowerLimit: 0 }));
       const { increase } = result.current;
@@ -142,7 +142,7 @@ describe('useNumber', () => {
       // then
       expect(result.current.value).toBe(0);
     });
-    it('should go to initial value if no lowerLimit presented after reaching upperLimit', () => {
+    it('should go to initial value if no lowerLimit presented after increase reaching upperLimit', () => {
       // given
       const { result } = renderHook(() => useNumber(4, { loop: true, upperLimit: 5 }));
       const { increase } = result.current;
@@ -152,7 +152,7 @@ describe('useNumber', () => {
       // then
       expect(result.current.value).toBe(4);
     });
-    it('should stay on upperLimit after reaching its value if loop equals false', () => {
+    it('should stay on upperLimit after increase reaching its value if loop equals false', () => {
       // given
       const { result } = renderHook(() => useNumber(4, { loop: false, upperLimit: 5 }));
       const { increase } = result.current;
