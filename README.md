@@ -40,14 +40,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-### Check out:
-
-- 💻 [Sizzy](https://sizzy.co) - The Browser For Developers
-- 🔮 [Fungarzione](https://fungarzione.com) - Keep your users in the loop (Changelogs, Roadmap, Issues)
-- 💌 [Twizzle](https://twizzle.app) - A standalone app for Twitter DM
-
 ---
-
 
 Has two APIs:
 
