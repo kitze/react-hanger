@@ -62,31 +62,18 @@ A collection of useful React hooks
 <table>
   <tr>
     <td width="33%" valign="top">
-      <a href="https://postiz.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/50b4a915f9c47b5328b97281/b08730d86b240100fd72d42b828923856d14d82d50eb5698b99cf8e2ca125288.webp" width="40" alt="Postiz logo"></a><br>
-      <strong><a href="https://postiz.com/?ref=kitze%2Freact-hanger">Postiz</a></strong><br>
-      Schedule social posts with AI agents.
-    </td>
-    <td width="33%" valign="top">
-      <a href="https://www.founderstack.pro/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/bc182e02573bf0e14da0cb0c/f164ca56c7b1d7869e589917f716e58355536eef30854f62c49f711c07a7de96.webp" width="40" alt="FounderStack logo"></a><br>
-      <strong><a href="https://www.founderstack.pro/?ref=kitze%2Freact-hanger">FounderStack</a></strong><br>
-      A SaaS stack for your business, without subscriptions.
-    </td>
-    <td width="33%" valign="top">
       <a href="https://matte.app/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/4193d8ef8f8b0660107703fe/66b20a60c4d9e1da3d999efe862e86f600ebb5a4ffa3a8b63f40a507fef91f66.webp" width="40" alt="Matte logo"></a><br>
       <strong><a href="https://matte.app/?ref=kitze%2Freact-hanger">Matte</a></strong><br>
-      3D mockups, screen recordings, and video editing.
+      3D mockups and screen recordings with pro-level video editing
     </td>
-  </tr>
-  <tr>
     <td width="33%" valign="top">
-      <a href="https://htmlcsstoimage.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/f4c20d84da68764c3f7a4f67/167bf23cf98b11e2d55ea9aa69f83052daceb881bdea7b76925ffa185ed66d2b.webp" width="40" alt="HTML/CSS to Image logo"></a><br>
-      <strong><a href="https://htmlcsstoimage.com/?ref=kitze%2Freact-hanger">HTML/CSS to Image</a></strong><br>
-      Turn HTML/CSS into images, PDFs, and screenshots.
+      <a href="https://postiz.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/50b4a915f9c47b5328b97281/b08730d86b240100fd72d42b828923856d14d82d50eb5698b99cf8e2ca125288.webp" width="40" alt="Postiz logo"></a><br>
+      <strong><a href="https://postiz.com/?ref=kitze%2Freact-hanger">Postiz</a></strong><br>
+      Agentic social scheduler for GIFs!
     </td>
-    <td width="67%" colspan="2" valign="top">
-      <a href="https://namemyventi.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/da87180867c3c7451bd30d7b/43ce5be2540cf23d3d7d7104ba829a455a9608861a780e0ec2b35b189695f7ea.webp" width="40" alt="NameMyVenti logo"></a><br>
-      <strong><a href="https://namemyventi.com/?ref=kitze%2Freact-hanger">NameMyVenti</a></strong><br>
-      Get your brand shouted out at Starbucks.
+    <td width="33%" valign="top">
+      <strong><a href="https://www.kitze.io/sponsors?ref=kitze%2Freact-hanger">Your product here</a></strong><br>
+      Reach developers in every kitze repo.
     </td>
   </tr>
 </table>
