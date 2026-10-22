@@ -72,6 +72,57 @@ A collection of useful React hooks
       Agentic social scheduler for GIFs!
     </td>
     <td width="33%" valign="top">
+      <a href="https://screenshotone.com/?ref=kitze%2Freact-hanger"><img src="https://screenshotone.com/logo.png" width="40" alt="ScreenshotOne logo"></a><br>
+      <strong><a href="https://screenshotone.com/?ref=kitze%2Freact-hanger">ScreenshotOne</a></strong><br>
+      The best screenshot API for developers and agents
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="https://www.ether.fi/ai-connector?utm_source=kitze&amp;utm_medium=sponsorship&amp;utm_campaign=ai_connector&amp;utm_content=sponsor_slot&amp;ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/etherfi.svg" width="40" alt="ether.fi logo"></a><br>
+      <strong><a href="https://www.ether.fi/ai-connector?utm_source=kitze&amp;utm_medium=sponsorship&amp;utm_campaign=ai_connector&amp;utm_content=sponsor_slot&amp;ref=kitze%2Freact-hanger">ether.fi</a></strong><br>
+      a neobank with a built in ai-connector, build your own frontend to your finance with claude, chatgpt or your LLM of choice! Feedback always welcome!
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://openprose.ai/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/openprose.png" width="40" alt="OpenProse logo"></a><br>
+      <strong><a href="https://openprose.ai/?ref=kitze%2Freact-hanger">OpenProse</a></strong><br>
+      Reliable, event-driven multiagent workflows — in Markdown.
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://opentweet.io/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/opentweet.png" width="40" alt="OpenTweet logo"></a><br>
+      <strong><a href="https://opentweet.io/?ref=kitze%2Freact-hanger">OpenTweet</a></strong><br>
+      Agentic X (Twitter) autopilot.
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="https://appsumo.com/?ref=kitze%2Freact-hanger"><img src="https://appsumo2-cdn.appsumo.com/static/images/favicon.svg" width="40" alt="AppSumo logo"></a><br>
+      <strong><a href="https://appsumo.com/?ref=kitze%2Freact-hanger">AppSumo</a></strong><br>
+      1M+ entrepreneurs use AppSumo to find the best deals on software for their business. One-time payments, lifetime access.
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://teamspartan.io/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/team-spartan.svg" width="40" alt="Team Spartan by CONFLICT logo"></a><br>
+      <strong><a href="https://teamspartan.io/?ref=kitze%2Freact-hanger">Team Spartan by CONFLICT</a></strong><br>
+      Know what matters. Get it fixed. Experience spans high-traffic consumer platforms, cloud infrastructure, and security — built under real operational pressure.
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://browserless.io/?ref=kitze%2Freact-hanger"><img src="https://docs.browserless.io/img/logo.svg" width="40" alt="Browserless.io logo"></a><br>
+      <strong><a href="https://browserless.io/?ref=kitze%2Freact-hanger">Browserless.io</a></strong><br>
+      The web layer your agent runs on.
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="https://www.strix.ai/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/strix.svg" width="40" alt="Strix logo"></a><br>
+      <strong><a href="https://www.strix.ai/?ref=kitze%2Freact-hanger">Strix</a></strong><br>
+      Hack yourself before the bad guys do. Open source (70k+ stars on Github)
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://maplevc.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/maple-vc.jpg" width="40" alt="Maple VC logo"></a><br>
+      <strong><a href="https://maplevc.com/?ref=kitze%2Freact-hanger">Maple VC</a></strong><br>
+      We&#39;re 3 operators (digitalocean, uber, shopify) turned investors who write first checks into folks with ambition to build global businesses.
+    </td>
+    <td width="33%" valign="top">
       <strong><a href="https://www.kitze.io/sponsors?ref=kitze%2Freact-hanger">Your product here</a></strong><br>
       Reach developers in every kitze repo.
     </td>
