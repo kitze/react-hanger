@@ -163,7 +163,12 @@ A collection of useful React hooks
     </td>
   </tr>
   <tr>
-    <td width="100%" colspan="3" valign="top">
+    <td width="33%" valign="top">
+      <a href="https://www.theinfluencer.ai/?ref=kitze%2Freact-hanger"><img src="https://www.theinfluencer.ai/logos/the-influencer-ai-logo-1024.png" width="40" alt="The Influencer AI logo"></a><br>
+      <strong><a href="https://www.theinfluencer.ai/?ref=kitze%2Freact-hanger">The Influencer AI</a></strong><br>
+      AI influencer generator: create a realistic influencer from traits or your photos, then make photos, talking videos and UGC ads with the same face every time.
+    </td>
+    <td width="67%" colspan="2" valign="top">
       <strong><a href="https://www.kitze.io/sponsors?ref=kitze%2Freact-hanger">Your product here</a></strong><br>
       Reach developers in every kitze repo.
     </td>
