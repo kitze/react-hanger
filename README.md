@@ -17,35 +17,69 @@ A collection of useful React hooks
 <table>
   <tr>
     <td width="33%" valign="top">
-      <a href="https://zerotoshipped.com/?ref=kitze%2Freact-hanger"><img src="https://zerotoshipped.com/ship.png" width="72" alt="Zero To Shipped logo"></a><br>
+      <a href="https://pwn.watch/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/pwn-watch.png" width="48" height="48" alt="pwn.watch logo"></a><br>
+      <strong><a href="https://pwn.watch/?ref=kitze%2Freact-hanger">pwn.watch</a></strong><br>
+      Live security incidents: CVEs, patch status, fixed versions and advisories.
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://flavors.design/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/flavors.png" width="48" height="48" alt="flavors.design logo"></a><br>
+      <strong><a href="https://flavors.design/?ref=kitze%2Freact-hanger">flavors.design</a></strong><br>
+      Copy-pasteable design flavors. Pick a vibe, hand the markdown to your agent.
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://gifs.so/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/gifs-so.png" width="48" height="48" alt="gifs.so logo"></a><br>
+      <strong><a href="https://gifs.so/?ref=kitze%2Freact-hanger">gifs.so</a></strong><br>
+      Search, copy, and download reaction GIFs.
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="https://shipper.so/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/shipper.png" width="48" height="48" alt="Shipper logo"></a><br>
+      <strong><a href="https://shipper.so/?ref=kitze%2Freact-hanger">Shipper</a></strong><br>
+      Changelog, roadmap, feature requests and tasks for every product you ship.
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://kanso.so/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/kanso.png" width="48" height="48" alt="Kanso logo"></a><br>
+      <strong><a href="https://kanso.so/?ref=kitze%2Freact-hanger">Kanso</a></strong><br>
+      One keyboard-first app for your todos, habits, routines, planner and saved stuff.
+    </td>
+    <td width="33%" valign="top">
+      <a href="https://healthmaxx.app/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/healthmaxx.png" width="48" height="48" alt="HealthMaxx logo"></a><br>
+      <strong><a href="https://healthmaxx.app/?ref=kitze%2Freact-hanger">HealthMaxx</a></strong><br>
+      One health log for everything you track: by hand, from wearables, or through your AI.
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <a href="https://zerotoshipped.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/zero-to-shipped.png" width="48" height="48" alt="Zero To Shipped logo"></a><br>
       <strong><a href="https://zerotoshipped.com/?ref=kitze%2Freact-hanger">Zero To Shipped</a></strong><br>
       A full-stack starter kit for web and mobile apps.
     </td>
     <td width="33%" valign="top">
-      <a href="https://sotto.to/?ref=kitze%2Freact-hanger"><img src="https://sotto.to/apple-touch-icon.png" width="48" alt="Sotto logo"></a><br>
+      <a href="https://sotto.to/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/sotto.png" width="48" height="48" alt="Sotto logo"></a><br>
       <strong><a href="https://sotto.to/?ref=kitze%2Freact-hanger">Sotto</a></strong><br>
       Voice-to-text for macOS. Local AI, one-time purchase.
     </td>
     <td width="33%" valign="top">
-      <a href="https://tinkerer.club/?ref=kitze%2Freact-hanger"><img src="https://app.tinkerer.club/brand/tinkerer-logo-128.png" width="48" alt="Tinkerer Club logo"></a><br>
+      <a href="https://tinkerer.club/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/tinkerer-club.png" width="48" height="48" alt="Tinkerer Club logo"></a><br>
       <strong><a href="https://tinkerer.club/?ref=kitze%2Freact-hanger">Tinkerer Club</a></strong><br>
       A private community for builders, self-hosters, and AI tinkerers.
     </td>
   </tr>
   <tr>
     <td width="33%" valign="top">
-      <a href="https://sizzy.co/?ref=kitze%2Freact-hanger"><img src="https://sizzy.co/apple-touch-icon.png" width="48" alt="Sizzy logo"></a><br>
+      <a href="https://sizzy.co/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/sizzy.png" width="48" height="48" alt="Sizzy logo"></a><br>
       <strong><a href="https://sizzy.co/?ref=kitze%2Freact-hanger">Sizzy</a></strong><br>
       The browser for web developers.
     </td>
     <td width="33%" valign="top">
-      <a href="https://supermac.io/?ref=kitze%2Freact-hanger"><img src="https://supermac.io/assets/swiftcast-logo.png" width="48" alt="Supermac logo"></a><br>
+      <a href="https://supermac.io/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/supermac.png" width="48" height="48" alt="Supermac logo"></a><br>
       <strong><a href="https://supermac.io/?ref=kitze%2Freact-hanger">Supermac</a></strong><br>
       A macOS command center for everyday workflows.
     </td>
     <td width="33%" valign="top">
-      <a href="https://dmx.to/?ref=kitze%2Freact-hanger"><img src="https://dmx.to/apple-touch-icon.png" width="48" alt="DMX logo"></a><br>
-<strong><a href="https://dmx.to/?ref=kitze%2Freact-hanger">DMX</a></strong><br>
+      <a href="https://dmx.to/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/projects/kitze/dmx.png" width="48" height="48" alt="DMX logo"></a><br>
+      <strong><a href="https://dmx.to/?ref=kitze%2Freact-hanger">DMX</a></strong><br>
       A focused desktop client for X.
     </td>
   </tr>
@@ -79,7 +113,7 @@ A collection of useful React hooks
   </tr>
   <tr>
     <td width="33%" valign="top">
-      <a href="https://www.ether.fi/ai-connector?utm_source=kitze&amp;utm_medium=sponsorship&amp;utm_campaign=ai_connector&amp;utm_content=sponsor_slot&amp;ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/etherfi.svg" width="40" alt="ether.fi logo"></a><br>
+      <a href="https://www.ether.fi/ai-connector?utm_source=kitze&amp;utm_medium=sponsorship&amp;utm_campaign=ai_connector&amp;utm_content=sponsor_slot&amp;ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/etherfi.png" width="40" alt="ether.fi logo"></a><br>
       <strong><a href="https://www.ether.fi/ai-connector?utm_source=kitze&amp;utm_medium=sponsorship&amp;utm_campaign=ai_connector&amp;utm_content=sponsor_slot&amp;ref=kitze%2Freact-hanger">ether.fi</a></strong><br>
       a neobank with a built in ai-connector, build your own frontend to your finance with claude, chatgpt or your LLM of choice! Feedback always welcome!
     </td>
@@ -96,24 +130,24 @@ A collection of useful React hooks
   </tr>
   <tr>
     <td width="33%" valign="top">
-      <a href="https://appsumo.com/?ref=kitze%2Freact-hanger"><img src="https://appsumo2-cdn.appsumo.com/static/images/favicon.svg" width="40" alt="AppSumo logo"></a><br>
+      <a href="https://appsumo.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/appsumo.png" width="40" alt="AppSumo logo"></a><br>
       <strong><a href="https://appsumo.com/?ref=kitze%2Freact-hanger">AppSumo</a></strong><br>
       1M+ entrepreneurs use AppSumo to find the best deals on software for their business. One-time payments, lifetime access.
     </td>
     <td width="33%" valign="top">
-      <a href="https://teamspartan.io/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/team-spartan.svg" width="40" alt="Team Spartan by CONFLICT logo"></a><br>
+      <a href="https://teamspartan.io/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/team-spartan.png" width="40" alt="Team Spartan by CONFLICT logo"></a><br>
       <strong><a href="https://teamspartan.io/?ref=kitze%2Freact-hanger">Team Spartan by CONFLICT</a></strong><br>
       Know what matters. Get it fixed. Experience spans high-traffic consumer platforms, cloud infrastructure, and security — built under real operational pressure.
     </td>
     <td width="33%" valign="top">
-      <a href="https://browserless.io/?ref=kitze%2Freact-hanger"><img src="https://docs.browserless.io/img/logo.svg" width="40" alt="Browserless.io logo"></a><br>
+      <a href="https://browserless.io/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/browserless.png" width="40" alt="Browserless.io logo"></a><br>
       <strong><a href="https://browserless.io/?ref=kitze%2Freact-hanger">Browserless.io</a></strong><br>
       The web layer your agent runs on.
     </td>
   </tr>
   <tr>
     <td width="33%" valign="top">
-      <a href="https://www.strix.ai/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/strix.svg" width="40" alt="Strix logo"></a><br>
+      <a href="https://www.strix.ai/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/strix.png" width="40" alt="Strix logo"></a><br>
       <strong><a href="https://www.strix.ai/?ref=kitze%2Freact-hanger">Strix</a></strong><br>
       Hack yourself before the bad guys do. Open source (70k+ stars on Github)
     </td>
@@ -527,20 +561,6 @@ useEffect(() => {
 <h3>More projects by Kitze</h3>
 <h4>Apps &amp; tools</h4>
 <table>
-  <tr>
-    <td width="33%" valign="top">
-      <strong><a href="https://gifs.so/?ref=kitze%2Freact-hanger">gifs.so</a></strong><br>
-      Search, copy, and download reaction GIFs.
-    </td>
-    <td width="33%" valign="top">
-      <strong><a href="https://glink.so/?ref=kitze%2Freact-hanger">Glink</a></strong><br>
-      Feedback, roadmaps, changelogs, and discussions.
-    </td>
-    <td width="33%" valign="top">
-      <strong><a href="https://benji.so/?ref=kitze%2Freact-hanger">Benji</a></strong><br>
-      Tasks, habits, calendar, health, and routines in one place.
-    </td>
-  </tr>
   <tr>
     <td width="33%" valign="top">
       <strong><a href="https://perkz.to/?ref=kitze%2Freact-hanger">Perkz</a></strong><br>
