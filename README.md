@@ -174,6 +174,13 @@ A collection of useful React hooks
       Find the right plugins for your AI agents. Plugins, skills and step-by-step recipes for Claude, ChatGPT, Grokbot, Muse, Gemini and more.
     </td>
     <td width="33%" valign="top">
+      <a href="https://file.cafe/?ref=kitze%2Freact-hanger"><img src="https://file.cafe/brand/icon-512.png" width="40" alt="file.cafe logo"></a><br>
+      <strong><a href="https://file.cafe/?ref=kitze%2Freact-hanger">file.cafe</a></strong><br>
+      Free, instant file sharing.
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" colspan="3" valign="top">
       <strong><a href="https://www.kitze.io/sponsors?ref=kitze%2Freact-hanger">Your product here</a></strong><br>
       Reach developers in every kitze repo.
     </td>
