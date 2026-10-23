@@ -191,6 +191,13 @@ A collection of useful React hooks
       AI agents that watch your competitors so you don&#39;t have to
     </td>
     <td width="33%" valign="top">
+      <a href="https://mixpost.app/?utm_source=kitze&amp;utm_medium=sponsor&amp;utm_campaign=kitze-sponsor&amp;ref=kitze%2Freact-hanger"><img src="https://mixpost.s3.eu-central-1.amazonaws.com/remote-access/logo-symbol.png" width="40" alt="Mixpost logo"></a><br>
+      <strong><a href="https://mixpost.app/?utm_source=kitze&amp;utm_medium=sponsor&amp;utm_campaign=kitze-sponsor&amp;ref=kitze%2Freact-hanger">Mixpost</a></strong><br>
+      Self-hosted social media scheduler. Pay once.
+    </td>
+  </tr>
+  <tr>
+    <td width="100%" colspan="3" valign="top">
       <strong><a href="https://www.kitze.io/sponsors?ref=kitze%2Freact-hanger">Your product here</a></strong><br>
       Reach developers in every kitze repo.
     </td>
