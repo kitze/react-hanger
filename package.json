@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^8.0.5",
-    "@testing-library/react-hooks": "^1.1.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/jest": "^25.2.1",
     "@types/react": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "4.22.0",
