@@ -140,17 +140,12 @@ A collection of useful React hooks
       Know what matters. Get it fixed. Experience spans high-traffic consumer platforms, cloud infrastructure, and security — built under real operational pressure.
     </td>
     <td width="33%" valign="top">
-      <a href="https://browserless.io/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/browserless.png" width="40" alt="Browserless.io logo"></a><br>
-      <strong><a href="https://browserless.io/?ref=kitze%2Freact-hanger">Browserless.io</a></strong><br>
-      The web layer your agent runs on.
-    </td>
-  </tr>
-  <tr>
-    <td width="33%" valign="top">
       <a href="https://www.strix.ai/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/strix.png" width="40" alt="Strix logo"></a><br>
       <strong><a href="https://www.strix.ai/?ref=kitze%2Freact-hanger">Strix</a></strong><br>
       Hack yourself before the bad guys do. Open source (70k+ stars on Github)
     </td>
+  </tr>
+  <tr>
     <td width="33%" valign="top">
       <a href="https://maplevc.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/maple-vc.jpg" width="40" alt="Maple VC logo"></a><br>
       <strong><a href="https://maplevc.com/?ref=kitze%2Freact-hanger">Maple VC</a></strong><br>
@@ -161,13 +156,13 @@ A collection of useful React hooks
       <strong><a href="https://www.rakazo.com/?ref=kitze%2Freact-hanger">Rakazo</a></strong><br>
       Open source Grok Bot
     </td>
-  </tr>
-  <tr>
     <td width="33%" valign="top">
       <a href="https://www.theinfluencer.ai/?ref=kitze%2Freact-hanger"><img src="https://www.theinfluencer.ai/logos/the-influencer-ai-logo-1024.png" width="40" alt="The Influencer AI logo"></a><br>
       <strong><a href="https://www.theinfluencer.ai/?ref=kitze%2Freact-hanger">The Influencer AI</a></strong><br>
       AI influencer generator: create a realistic influencer from traits or your photos, then make photos, talking videos and UGC ads with the same face every time.
     </td>
+  </tr>
+  <tr>
     <td width="33%" valign="top">
       <a href="https://pluginboard.ai/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/pluginboard.png" width="40" alt="Pluginboard logo"></a><br>
       <strong><a href="https://pluginboard.ai/?ref=kitze%2Freact-hanger">Pluginboard</a></strong><br>
@@ -178,13 +173,13 @@ A collection of useful React hooks
       <strong><a href="https://file.cafe/?ref=kitze%2Freact-hanger">file.cafe</a></strong><br>
       Free, instant file sharing.
     </td>
-  </tr>
-  <tr>
     <td width="33%" valign="top">
       <a href="https://linkdr.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/linkdr.png" width="40" alt="LinkDR logo"></a><br>
       <strong><a href="https://linkdr.com/?ref=kitze%2Freact-hanger">LinkDR</a></strong><br>
       Link building that works: real backlinks from hundreds of high-DR sites, done for you or self-serve.
     </td>
+  </tr>
+  <tr>
     <td width="33%" valign="top">
       <a href="https://outmano.com/?ref=kitze%2Freact-hanger"><img src="https://outmano.com/icon-512.png" width="40" alt="Outmano logo"></a><br>
       <strong><a href="https://outmano.com/?ref=kitze%2Freact-hanger">Outmano</a></strong><br>
@@ -195,13 +190,13 @@ A collection of useful React hooks
       <strong><a href="https://mixpost.app/?utm_source=kitze&amp;utm_medium=sponsor&amp;utm_campaign=kitze-sponsor&amp;ref=kitze%2Freact-hanger">Mixpost</a></strong><br>
       Self-hosted social media scheduler. Pay once.
     </td>
-  </tr>
-  <tr>
     <td width="33%" valign="top">
       <a href="https://synteq.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/synteq.png" width="40" alt="Synteq logo"></a><br>
       <strong><a href="https://synteq.com/?ref=kitze%2Freact-hanger">Synteq</a></strong><br>
       The cloud, built for developers.
     </td>
+  </tr>
+  <tr>
     <td width="33%" valign="top">
       <a href="https://kraken.io/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/kraken-io.png" width="40" alt="Kraken.io logo"></a><br>
       <strong><a href="https://kraken.io/?ref=kitze%2Freact-hanger">Kraken.io</a></strong><br>
@@ -212,14 +207,14 @@ A collection of useful React hooks
       <strong><a href="https://www.opensourcealternatives.to/?ref=kitze%2Freact-hanger">Open Source Alternatives</a></strong><br>
       Best Open Source Alternatives to Paid Software. Type anything and It answers with the right open source alternatives.
     </td>
-  </tr>
-  <tr>
     <td width="33%" valign="top">
       <a href="https://watasu.io/?utm_source=pwnwatch&amp;utm_medium=sponsor&amp;utm_campaign=sidebar&amp;ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/watasu.png" width="40" alt="WATASU logo"></a><br>
       <strong><a href="https://watasu.io/?utm_source=pwnwatch&amp;utm_medium=sponsor&amp;utm_campaign=sidebar&amp;ref=kitze%2Freact-hanger">WATASU</a></strong><br>
       Hosting for your vibe-coded app
     </td>
-    <td width="67%" colspan="2" valign="top">
+  </tr>
+  <tr>
+    <td width="100%" colspan="3" valign="top">
       <strong><a href="https://www.kitze.io/sponsors?ref=kitze%2Freact-hanger">Your product here</a></strong><br>
       Reach developers in every kitze repo.
     </td>
