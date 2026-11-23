@@ -174,17 +174,12 @@ A collection of useful React hooks
       Link building that works: real backlinks from hundreds of high-DR sites, done for you or self-serve.
     </td>
     <td width="33%" valign="top">
-      <a href="https://mixpost.app/?utm_source=kitze&amp;utm_medium=sponsor&amp;utm_campaign=kitze-sponsor&amp;ref=kitze%2Freact-hanger"><img src="https://mixpost.s3.eu-central-1.amazonaws.com/remote-access/logo-symbol.png" width="40" alt="Mixpost logo"></a><br>
-      <strong><a href="https://mixpost.app/?utm_source=kitze&amp;utm_medium=sponsor&amp;utm_campaign=kitze-sponsor&amp;ref=kitze%2Freact-hanger">Mixpost</a></strong><br>
-      Self-hosted social media scheduler. Pay once.
-    </td>
-  </tr>
-  <tr>
-    <td width="33%" valign="top">
       <a href="https://synteq.com/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/synteq.png" width="40" alt="Synteq logo"></a><br>
       <strong><a href="https://synteq.com/?ref=kitze%2Freact-hanger">Synteq</a></strong><br>
       The cloud, built for developers.
     </td>
+  </tr>
+  <tr>
     <td width="33%" valign="top">
       <a href="https://kraken.io/?ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/kraken-io.png" width="40" alt="Kraken.io logo"></a><br>
       <strong><a href="https://kraken.io/?ref=kitze%2Freact-hanger">Kraken.io</a></strong><br>
@@ -195,14 +190,14 @@ A collection of useful React hooks
       <strong><a href="https://www.opensourcealternatives.to/?ref=kitze%2Freact-hanger">Open Source Alternatives</a></strong><br>
       Best Open Source Alternatives to Paid Software. Type anything and It answers with the right open source alternatives.
     </td>
-  </tr>
-  <tr>
     <td width="33%" valign="top">
       <a href="https://watasu.io/?utm_source=pwnwatch&amp;utm_medium=sponsor&amp;utm_campaign=sidebar&amp;ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/watasu.png" width="40" alt="WATASU logo"></a><br>
       <strong><a href="https://watasu.io/?utm_source=pwnwatch&amp;utm_medium=sponsor&amp;utm_campaign=sidebar&amp;ref=kitze%2Freact-hanger">WATASU</a></strong><br>
       Hosting for your vibe-coded app
     </td>
-    <td width="67%" colspan="2" valign="top">
+  </tr>
+  <tr>
+    <td width="100%" colspan="3" valign="top">
       <strong><a href="https://www.kitze.io/sponsors?ref=kitze%2Freact-hanger">Your product here</a></strong><br>
       Reach developers in every kitze repo.
     </td>
