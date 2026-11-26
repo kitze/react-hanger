@@ -51,7 +51,7 @@
     "eslint-plugin-react": "7.23.2",
     "eslint-plugin-react-hooks": "4.2.0",
     "jest": "^25.3.0",
-    "np": "6.2.1",
+    "np": "12.1.1",
     "prettier": "2.2.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
