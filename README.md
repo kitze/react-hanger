@@ -186,18 +186,11 @@ A collection of useful React hooks
       We optimize your images, to save you bandwidth, make your websites faster, make your customers less frustrated, and reduce your CDN costs.
     </td>
     <td width="33%" valign="top">
-      <a href="https://www.opensourcealternatives.to/?ref=kitze%2Freact-hanger"><img src="https://www.opensourcealternatives.to/logo.png" width="40" alt="Open Source Alternatives logo"></a><br>
-      <strong><a href="https://www.opensourcealternatives.to/?ref=kitze%2Freact-hanger">Open Source Alternatives</a></strong><br>
-      Best Open Source Alternatives to Paid Software. Type anything and It answers with the right open source alternatives.
-    </td>
-    <td width="33%" valign="top">
       <a href="https://watasu.io/?utm_source=pwnwatch&amp;utm_medium=sponsor&amp;utm_campaign=sidebar&amp;ref=kitze%2Freact-hanger"><img src="https://media.gifs.so/sponsors/kitze-io/watasu.png" width="40" alt="WATASU logo"></a><br>
       <strong><a href="https://watasu.io/?utm_source=pwnwatch&amp;utm_medium=sponsor&amp;utm_campaign=sidebar&amp;ref=kitze%2Freact-hanger">WATASU</a></strong><br>
       Hosting for your vibe-coded app
     </td>
-  </tr>
-  <tr>
-    <td width="100%" colspan="3" valign="top">
+    <td width="33%" valign="top">
       <strong><a href="https://www.kitze.io/sponsors?ref=kitze%2Freact-hanger">Your product here</a></strong><br>
       Reach developers in every kitze repo.
     </td>
